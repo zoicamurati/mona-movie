@@ -22,9 +22,10 @@ return [
     ],
 
     'payment_action' => 'Sale', // Can only be 'Sale', 'Authorization' or 'Order'
-    'currency'       => env('PAYPAL_CURRENCY', 'USD'),
-    'billing_type'   => 'MerchantInitiatedBilling',
+    'currency'       => env('PAYPAL_CURRENCY', 'EUR'),
     'notify_url'     => '', // Change this accordingly for your application.
     'locale'         => '', // force gateway language  i.e. it_IT, es_ES, en_US ... (for express checkout only)
-    'validate_ssl'   => true, // Validate SSL when creating api client.
+    'validate_ssl'   => false,
+    'invoice_prefix' => env('PAYPAL_INVOICE_PREFIX', 'PAYPALDEMOAPP')
+
 ];

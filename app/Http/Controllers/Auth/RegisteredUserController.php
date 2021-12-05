@@ -47,8 +47,11 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return view('pay_movie', compact('user'));
+
+        //Auth::login($user);
+
+       // return redirect(RouteServiceProvider::HOME);
     }
 }

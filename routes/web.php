@@ -17,14 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 Route::group(['prefix' => 'paypal'], function () {
-    Route::get('create-transaction', 'PayPalController@createTransaction')->name('createTransaction');
-    Route::post('process-transaction', 'PayPalController@processTransaction')->name('processTransaction');
-    Route::get('success-transaction', 'PayPalController@successTransaction')->name('successTransaction');
+    Route::get('create-transaction', [\App\Http\Controllers\PaypalController::class, 'createTransaction'])->name('createTransaction');
+    Route::post('process-transaction', [\App\Http\Controllers\PaypalController::class, 'processTransaction'])->name('processTransaction');
+    Route::get('success-transaction', [\App\Http\Controllers\PaypalController::class, 'successTransaction'])->name('successTransaction');
 });
