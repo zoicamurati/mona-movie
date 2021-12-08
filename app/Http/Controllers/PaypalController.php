@@ -7,6 +7,7 @@ use App\Models\Invoice;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Srmklive\PayPal\Services\ExpressCheckout;
@@ -61,10 +62,10 @@ class PaypalController extends Controller
         ]);
 
         event(new Registered($user));
+        Auth::login($user);
 
         $price=19;
-
-        $order = $this->createInvoice($user->id,$price);
+        $order = $this->createInvoice($price,$user->id);
 
         Session::put('user_id', $user->id);
         Session::put('total', $price);
@@ -165,6 +166,7 @@ class PaypalController extends Controller
      */
     protected function createInvoice($price,$user_id)
     {
+
         $invoice = new Invoice();
 
         $invoice->user_id = $user_id;

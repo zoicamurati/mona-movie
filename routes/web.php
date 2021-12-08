@@ -18,11 +18,12 @@ Route::get('/', function () {
 });
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/admin', function () {
+    return view('panel');
+})->middleware(['auth'])->name('panel');
 
 require __DIR__ . '/auth.php';
+
 
 Route::group(['prefix' => 'paypal'], function () {
     Route::get('create-transaction', [\App\Http\Controllers\PaypalController::class, 'createTransaction'])->name('createTransaction');

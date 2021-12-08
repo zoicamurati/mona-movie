@@ -1,16 +1,26 @@
+@extends('layouts.main')
+@section('content')
+    <div class="alert alert payment-msg">
+        @if(\Session::has('error'))
+            <h1 class="" style="margin: 20px">{{ \Session::get('error') }}</h1>
+            {{ \Session::forget('error') }}
+        @endif
+        @if(\Session::has('success'))
+            <h1 class="" style="margin: 20px">{{ \Session::get('success') }}</h1>
+            {{ \Session::forget('success') }}
+        @endif
 
-    @if(\Session::has('error'))
-        <div class="alert alert-danger" style="margin: 20px">{{ \Session::get('error') }}</div>
-        {{ \Session::forget('error') }}
-    @endif
-    @if(\Session::has('success'))
-        <div class="alert alert-success" style="margin: 20px">{{ \Session::get('success') }}</div>
-        {{ \Session::forget('success') }}
-    @endif
+        @if(!empty($response['code']))
+            <h1 class="" style="margin: 20px">
+                {{$response['message']}}
+            </h1>
+        @endif
+        {{-- <div class="alert alert-danger" style="margin: 20px">{{ "pse" }}</div>
+         <div class="alert alert-success" style="margin: 20px">{{"po "}}</div>
 
-    @if(!empty($response['code']))
-        <div class="alert alert-{{$response['code']}}" style="margin: 20px">
-            {{$response['message']}}
-        </div>
-    @endif
+            <h1>hahahhaha hahahhaha
+                hahahhaha</h1>--}}
+        <p>hahhahah</p>
+    </div>
+@endsection
 
