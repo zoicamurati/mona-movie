@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\PaypalController;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -48,10 +49,11 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
 
-        return view('pay_movie', compact('user'));
 
-        //Auth::login($user);
+        //return view('pay_movie', compact('user'));
 
-       // return redirect(RouteServiceProvider::HOME);
+        Auth::login($user);
+
+        return redirect(RouteServiceProvider::HOME);
     }
 }
