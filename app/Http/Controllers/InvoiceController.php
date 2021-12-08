@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Invoice;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
@@ -14,7 +15,10 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        //
+        $total = Invoice::where('status', 1)->sum('total');
+        $users = User::where('role', 0)->count();
+
+        return view('panel.pagesat.index', compact(['users', 'total']));
     }
 
     /**
@@ -30,7 +34,7 @@ class InvoiceController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,7 +45,7 @@ class InvoiceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Invoice  $invoice
+     * @param \App\Models\Invoice $invoice
      * @return \Illuminate\Http\Response
      */
     public function show(Invoice $invoice)
@@ -52,7 +56,7 @@ class InvoiceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Invoice  $invoice
+     * @param \App\Models\Invoice $invoice
      * @return \Illuminate\Http\Response
      */
     public function edit(Invoice $invoice)
@@ -63,8 +67,8 @@ class InvoiceController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Invoice  $invoice
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Invoice $invoice
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Invoice $invoice)
@@ -75,7 +79,7 @@ class InvoiceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Invoice  $invoice
+     * @param \App\Models\Invoice $invoice
      * @return \Illuminate\Http\Response
      */
     public function destroy(Invoice $invoice)

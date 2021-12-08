@@ -234,4 +234,5 @@ return [
 
     ],
 
+    'price' => env('PRICE', '19'),
 ];

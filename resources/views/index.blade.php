@@ -257,7 +257,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="contact-info">
-                                                    <form class="js-form" novalidate="novalidate">
+                                                    <form class="js-form" novalidate="novalidate" >
                                                         <div class="row">
                                                             <div class="form-group col-sm-6">
                                                                 <input type="text" name="name" required="" placeholder="Name*" aria-required="true">

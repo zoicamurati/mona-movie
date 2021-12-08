@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Client;
 use App\Models\Invoice;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Srmklive\PayPal\Services\ExpressCheckout;
@@ -38,7 +40,15 @@ class PaypalController extends Controller
             session()->forget('message');
         }
 
-        return view('transaction', compact('response'));
+        $date = Carbon::now();
+       // $date = Carbon::parse('2021-12-25 00:00:00');
+
+        if ($date->betweenIncluded('2021-12-25 00:00:00', '2021-12-25 23:59:59')) {
+            return view('watch_movie', compact('response'));
+        } else {
+            return view('transaction', compact('response'));
+        }
+
     }
 
     /**
@@ -62,9 +72,9 @@ class PaypalController extends Controller
         ]);
 
         event(new Registered($user));
-        Auth::login($user);
 
-        $price=19;
+
+        $price=Config::get('app.price');
         $order = $this->createInvoice($price,$user->id);
 
         Session::put('user_id', $user->id);
@@ -194,10 +204,15 @@ class PaypalController extends Controller
     {
         $invoice_id = Session::get('invoice_id');
 
+
         $invoice = Invoice::find($invoice_id);
+
+        $user_id = Session::get('user_id');
+        $user=User::find($user_id);
 
         if (!strcasecmp($status, 'Completed') || !strcasecmp($status, 'Processed')) {
             $invoice->status = 1;
+            Auth::login($user);
         } else {
             $invoice->status = 0;
         }

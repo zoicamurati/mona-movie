@@ -1,23 +1,24 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/images/drilon/favicon.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('assets/images/drilon/favicon.png') }}">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>
         Paneli i Menaxhimi
     </title>
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+          name='viewport'/>
     <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
-    <link href="{{ asset('panel/css/material-dashboard.css?v=2.1.0') }}" rel="stylesheet" />
+    <link href="{{ asset('panel/css/material-dashboard.css?v=2.1.0') }}" rel="stylesheet"/>
     <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="{{ asset('panel/demo/demo.css') }}" rel="stylesheet" />
+    <link href="{{ asset('panel/demo/demo.css') }}" rel="stylesheet"/>
 </head>
 
 <body class="dark-edition">
@@ -28,20 +29,26 @@
 
           Tip 2: you can also add an image using data-image tag
       -->
-        <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
+        <div class="logo"><a href="{{route('home')}}" class="simple-text logo-normal">
                 Shkembimi Film
             </a></div>
         <div class="sidebar-wrapper">
             <ul class="nav">
                 <li class="nav-item ">
-                    <a class="nav-link" href="./">
-                        <i class="material-icons">dashboard</i>
+                    <a class="nav-link" href="{{route('movie')}}">
+                        <i class="material-icons">video</i>
+                        <p>Shiko filmin</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{route('usersList')}}">
+                        <i class="material-icons">person</i>
                         <p>Bleres</p>
                     </a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" href="./">
-                        <i class="material-icons">dashboard</i>
+                    <a class="nav-link" href="{{route('invoiceTotals')}}">
+                        <i class="material-icons">euro</i>
                         <p>Totali i Pagesave</p>
                     </a>
                 </li>
@@ -49,42 +56,46 @@
         </div>
     </div>
     <div class="main-panel">
-    <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
-        <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
+            <div class="container-fluid">
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="navbar-toggler-icon icon-bar"></span>
-                <span class="navbar-toggler-icon icon-bar"></span>
-                <span class="navbar-toggler-icon icon-bar"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
+                        aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="navbar-toggler-icon icon-bar"></span>
+                    <span class="navbar-toggler-icon icon-bar"></span>
+                    <span class="navbar-toggler-icon icon-bar"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end">
 
-                <ul class="navbar-nav">
+                    <ul class="navbar-nav">
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="javscript:void(0)" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="material-icons">person</i>
-                            <p class="d-lg-none d-md-block">
-                                Some Actions
-                            </p>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-
-                            <a class="dropdown-item" href="">Log Out</a>
-                        </div>
-                    </li>
-                </ul>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="javscript:void(0)" id="navbarDropdownMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="material-icons">person</i>
+                                <p class="d-lg-none d-md-block">
+                                    Some Actions
+                                </p>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                                <form action="{{route('logout')}}" method="post">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item">Log Out</button>
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 
 
-@yield('content')
+        @yield('content')
 
 
     </div>
-<!--   Core JS Files   -->
+    <!--   Core JS Files   -->
     <script src="{{ asset('panel/js/core/jquery.min.js') }}"></script>
     <script src="{{ asset('panel/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('panel/js/core/bootstrap-material-design.min.js') }}"></script>
@@ -103,8 +114,8 @@
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
     <script src="{{ asset('panel/demo/demo.js')}}"></script>
     <script>
-        $(document).ready(function() {
-            $().ready(function() {
+        $(document).ready(function () {
+            $().ready(function () {
                 $sidebar = $('.sidebar');
 
                 $sidebar_img_container = $sidebar.find('.sidebar-background');
@@ -115,7 +126,7 @@
 
                 window_width = $(window).width();
 
-                $('.fixed-plugin a').click(function(event) {
+                $('.fixed-plugin a').click(function (event) {
                     // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
                     if ($(this).hasClass('switch-trigger')) {
                         if (event.stopPropagation) {
@@ -126,7 +137,7 @@
                     }
                 });
 
-                $('.fixed-plugin .active-color span').click(function() {
+                $('.fixed-plugin .active-color span').click(function () {
                     $full_page_background = $('.full-page-background');
 
                     $(this).siblings().removeClass('active');
@@ -147,7 +158,7 @@
                     }
                 });
 
-                $('.fixed-plugin .background-color .badge').click(function() {
+                $('.fixed-plugin .background-color .badge').click(function () {
                     $(this).siblings().removeClass('active');
                     $(this).addClass('active');
 
@@ -158,7 +169,7 @@
                     }
                 });
 
-                $('.fixed-plugin .img-holder').click(function() {
+                $('.fixed-plugin .img-holder').click(function () {
                     $full_page_background = $('.full-page-background');
 
                     $(this).parent('li').siblings().removeClass('active');
@@ -168,7 +179,7 @@
                     var new_image = $(this).find("img").attr('src');
 
                     if ($sidebar_img_container.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
-                        $sidebar_img_container.fadeOut('fast', function() {
+                        $sidebar_img_container.fadeOut('fast', function () {
                             $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
                             $sidebar_img_container.fadeIn('fast');
                         });
@@ -177,7 +188,7 @@
                     if ($full_page_background.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
                         var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
 
-                        $full_page_background.fadeOut('fast', function() {
+                        $full_page_background.fadeOut('fast', function () {
                             $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
                             $full_page_background.fadeIn('fast');
                         });
@@ -196,7 +207,7 @@
                     }
                 });
 
-                $('.switch-sidebar-image input').change(function() {
+                $('.switch-sidebar-image input').change(function () {
                     $full_page_background = $('.full-page-background');
 
                     $input = $(this);
@@ -228,7 +239,7 @@
                     }
                 });
 
-                $('.switch-sidebar-mini input').change(function() {
+                $('.switch-sidebar-mini input').change(function () {
                     $body = $('body');
 
                     $input = $(this);
@@ -243,7 +254,7 @@
 
                         $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar('destroy');
 
-                        setTimeout(function() {
+                        setTimeout(function () {
                             $('body').addClass('sidebar-mini');
 
                             md.misc.sidebar_mini_active = true;
@@ -251,12 +262,12 @@
                     }
 
                     // we simulate the window Resize so the charts will get updated in realtime.
-                    var simulateWindowResize = setInterval(function() {
+                    var simulateWindowResize = setInterval(function () {
                         window.dispatchEvent(new Event('resize'));
                     }, 180);
 
                     // we stop the simulation of Window Resize after the animations are completed
-                    setTimeout(function() {
+                    setTimeout(function () {
                         clearInterval(simulateWindowResize);
                     }, 1000);
 
