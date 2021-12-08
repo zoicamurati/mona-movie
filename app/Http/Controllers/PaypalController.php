@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Client;
 use App\Models\Invoice;
+use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Srmklive\PayPal\Services\ExpressCheckout;
+use Illuminate\Validation\Rules;
 
 class PaypalController extends Controller
 {
@@ -45,12 +49,25 @@ class PaypalController extends Controller
     {
 
         $request->validate([
-            'user_id' => 'required',
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $order = $this->createInvoice($request->all());
-        Session::put('user_id', $request->get('user_id'));
-        Session::put('total', $request->get('total'));
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        event(new Registered($user));
+
+        $price=19;
+
+        $order = $this->createInvoice($user->id,$price);
+
+        Session::put('user_id', $user->id);
+        Session::put('total', $price);
 
         $cart = $this->getCheckoutData();
 
@@ -146,13 +163,13 @@ class PaypalController extends Controller
      * @param $request
      * @return Invoice
      */
-    protected function createInvoice($request)
+    protected function createInvoice($price,$user_id)
     {
         $invoice = new Invoice();
 
-        $invoice->user_id = $request['user_id'];
+        $invoice->user_id = $user_id;
         $invoice->title = "Movie paymant";
-        $invoice->total = $request['total'];
+        $invoice->total = $price;
         $invoice->status = 0;
 
 
