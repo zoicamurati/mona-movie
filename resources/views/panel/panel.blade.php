@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <h2> Welcome {{Auth::user()->name}}</h2>
+                    <h1 style="text-align: center; color: #7e0809; text-transform: uppercase"> Welcome {{Auth::user()->name}}</h1>
                 </div>
 
             </div>

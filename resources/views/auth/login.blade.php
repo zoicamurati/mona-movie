@@ -1,9 +1,13 @@
-<x-guest-layout>
+@extends('layouts.main')
+@section('content')
+    <div class="login-bg">
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
+            <div class="logo-login">
+                <a  href="/">
+                    <img alt="" src="/assets/images/drilon/logo.png" class="img-fluid">
+                </a>
+            </div>
         </x-slot>
 
         <!-- Session Status -->
@@ -11,7 +15,7 @@
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
+        <div class="form">
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
@@ -47,10 +51,11 @@
                     </a>
                 @endif
 
-                <x-button class="ml-3">
+                <x-button class="book-btn">
                     {{ __('Log in') }}
                 </x-button>
             </div>
         </form>
+        </div>
     </x-auth-card>
-</x-guest-layout>
+@endsection

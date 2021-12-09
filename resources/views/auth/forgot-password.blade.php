@@ -1,12 +1,16 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
+@extends('layouts.main')
+@section('content')
+    <div class="login-bg">
+        <x-auth-card>
+            <x-slot name="logo">
+                <div class="logo-login">
+                    <a  href="/">
+                        <img alt="" src="/assets/images/drilon/logo.png" class="img-fluid">
+                    </a>
+                </div>
         </x-slot>
 
-        <div class="mb-4 text-sm text-gray-600">
+        <div class="mb-4 text-center text-gray-600">
             {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
         </div>
 
@@ -15,7 +19,7 @@
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
+            <div class="form">
         <form method="POST" action="{{ route('password.email') }}">
             @csrf
 
@@ -26,11 +30,13 @@
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <x-button>
+            <div class="flex items-center book-btn justify-end mt-4">
+                <x-button class="book-btn ">
                     {{ __('Email Password Reset Link') }}
                 </x-button>
             </div>
         </form>
+            </div>
     </x-auth-card>
-</x-guest-layout>
+    </div>
+@endsection

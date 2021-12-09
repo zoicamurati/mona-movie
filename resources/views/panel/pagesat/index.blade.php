@@ -3,7 +3,7 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                     <div class="card card-stats">
                         <div class="card-header card-header-danger card-header-icon">
                             <div class="card-icon">
@@ -21,7 +21,7 @@
                           </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                     <div class="card card-stats">
                         <div class="card-header card-header-success card-header-icon">
                             <div class="card-icon">

@@ -1,14 +1,18 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
+@extends('layouts.main')
+@section('content')
+    <div class="login-bg">
+        <x-auth-card>
+            <x-slot name="logo">
+                <div class="logo-login">
+                    <a  href="/">
+                        <img alt="" src="/assets/images/drilon/logo.png" class="img-fluid">
+                    </a>
+                </div>
         </x-slot>
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
+            <div class="form">
         <form method="POST" action="{{ route('password.update') }}">
             @csrf
 
@@ -39,10 +43,12 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <x-button>
+                <x-button class="book-btn">
                     {{ __('Reset Password') }}
                 </x-button>
             </div>
         </form>
+            </div>
     </x-auth-card>
-</x-guest-layout>
+    </div>
+@endsection

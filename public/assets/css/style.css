@@ -297,7 +297,7 @@ textarea{
   -webkit-transition: all .15s;
        -o-transition: all .15s;
           transition: all .15s;
-    border: 1px solid #5a0b0b;
+
 }
 
 textarea{
@@ -1796,7 +1796,12 @@ a:hover{
 .payment-msg h1{
     color: #770000;
 }
-
+.login-bg{
+    margin-top: 5rem;
+}
+.form input{
+    border: 1px solid #5a0b0b;
+}
 
 /* 3.7 Section Testimonials */
 
