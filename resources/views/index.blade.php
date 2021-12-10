@@ -14,7 +14,7 @@
     <div class="pagepiling">
         <div data-anchor="page1" class="pp-scrollable text-white section section-1">
             <div class="scroll-wrap">
-                <div class="section-bg mobile-bg" style="background-image:url('assets/images/drilon/main2.png') "></div>
+                <div class="section-bg mobile-bg" style="background-image:url('assets/images/drilon/main-slider.png') "></div>
                 <div class="scrollable-content">
                     <div class="vertical-centred">
                         <div class="boxed boxed-inner">
