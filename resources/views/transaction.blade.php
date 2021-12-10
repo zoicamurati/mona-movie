@@ -15,12 +15,7 @@
                 {{$response['message']}}
             </h1>
         @endif
-        {{-- <div class="alert alert-danger" style="margin: 20px">{{ "pse" }}</div>
-         <div class="alert alert-success" style="margin: 20px">{{"po "}}</div>
-
-            <h1>hahahhaha hahahhaha
-                hahahhaha</h1>--}}
-        <p>hahhahah</p>
+            <h6 style="color: #fff;text-align: center">Faqja e vetme zyrtare ku filmi do te shfaqet online VETEM PER 24 ORE NE 25 DHJETOR nxitoni te rezervoni dhe perfitoni nga cmimi ne oferte NGA 15€ VETEM 5€</h6>
     </div>
 @endsection
 

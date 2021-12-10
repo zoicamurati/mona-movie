@@ -13,7 +13,9 @@
         </x-slot>
 
         <!-- Validation Errors -->
+        <div class="errors">
         <x-auth-validation-errors :errors="$errors"/>
+        </div>
         <div class="form">
 
         <form method="POST" action="{{ route('processTransaction') }}">

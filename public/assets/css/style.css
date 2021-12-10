@@ -76,6 +76,11 @@ body{
   background: #1b1b1b;
   -webkit-overflow-scrolling:touch;
 }
+.errors{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
 
 ::-webkit-scrollbar{
   width: 8px;
@@ -1774,7 +1779,7 @@ a:hover{
 
 @media only screen and (max-width: 989px) {
  .mobile-bg{
-   background-image: url("../images/drilon/banermobile.png") !important;
+   background-image: url("../images/drilon/mobile.png") !important;
  }
   .display-2 {
     font-size: 4.54rem;

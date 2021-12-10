@@ -14,7 +14,7 @@
     <div class="pagepiling">
         <div data-anchor="page1" class="pp-scrollable text-white section section-1">
             <div class="scroll-wrap">
-                <div class="section-bg mobile-bg" style="background-image:url('assets/images/drilon/main-slider.png') "></div>
+                <div class="section-bg mobile-bg" style="background-image:url('assets/images/drilon/banertest.png') "></div>
                 <div class="scrollable-content">
                     <div class="vertical-centred">
                         <div class="boxed boxed-inner">
@@ -23,7 +23,11 @@
                                     <div class="intro">
                                         <div class="row">
                                             <div class="col-md-8 col-lg-6">
-                                                <h1 class="display-2 text-white  wow fadeIn" data-wow-delay="0.1s"><span class="text-primary">Drilon Hoxha</span> Production</h1>
+                                                <h1 class="display-2 text-white  wow fadeIn" data-wow-delay="0.1s">REZERVO FILMIN TANI PER <span class="text-primary">5€ </span> </h1>
+                                                <h6 class=" text-white  wow fadeIn">Faqja e vetme zyrtare ku filmi do te shfaqet online <span class="text-primary"> VETEM PER 24 ORE NE 25 DHJETOR </span> nxitoni te rezervoni dhe perfitoni nga cmimi ne oferte   NGA <span class="text-primary">15€ </span> VETEM <span class="text-primary"> 5€ </span>   </h6>
+                                                <div class="book-btn contact-item" style="width: 200px">
+                                                    <a href="{{route('register')}}" style="color: #fff">BOOK NOW</a>
+                                                </div>
                                                 <a class="popup-youtube"  href="https://www.youtube.com/watch?v=J_Yms2JjufU"><span class="icon ion-ios-play"></span>Shkembimi - Official Trailer 2021</a>
                                             </div>
                                         </div>
