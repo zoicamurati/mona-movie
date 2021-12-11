@@ -21,6 +21,12 @@
                                         Email
                                     </th>
                                     <th>
+                                        Emri ne Paypal
+                                    </th>
+                                    <th>
+                                        Email ne Paypal
+                                    </th>
+                                    <th>
                                         Data
                                     </th>
                                     </thead>
@@ -32,6 +38,12 @@
                                             </td>
                                             <td>
                                                 {{$user->email}}
+                                            </td>
+                                            <td>
+                                                {{$user->real_name}}
+                                            </td>
+                                            <td>
+                                                {{$user->real_email}}
                                             </td>
                                             <td>
                                                 {{ date('d-m-Y', strtotime($user->created_at))}}

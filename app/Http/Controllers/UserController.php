@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Notifications\NewContactCreated;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -24,10 +25,18 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function contact()
+    public function contact(Request $request)
     {
-        $users=User::where('role',0)->orderBy('created_at','desc')->get();
+        $user=User::where('email','contact@drilonhoxha.com')->orderBy('created_at','desc')->get();
 
-        return response('panel.users.index', compact('users'));
+        try {
+            $user->notify(new NewContactCreated($request->all()));
+        } catch (\Exception $e) {
+            \Log::info($e->getMessage());
+        }
+
+        return  redirect()->back()->with('success', 'your message,here');
+
+
     }
 }

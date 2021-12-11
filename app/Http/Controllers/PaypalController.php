@@ -41,7 +41,7 @@ class PaypalController extends Controller
         }
 
         $date = Carbon::now();
-       // $date = Carbon::parse('2021-12-25 00:00:00');
+        // $date = Carbon::parse('2021-12-25 00:00:00');
 
         if ($date->betweenIncluded('2021-12-25 00:00:00', '2021-12-25 23:59:59')) {
             return view('watch_movie', compact('response'));
@@ -85,10 +85,10 @@ class PaypalController extends Controller
         try {
 
             $response = $this->provider->setExpressCheckout($cart);
-
+            \Log::info($response);
             return redirect($response['paypal_link']);
         } catch (\Exception $e) {
-
+            \Log::info($response);
             $this->updateInvoice('Invalid');
 
             session()->put(['code' => 'danger', 'message' => "Error processing PayPal payment for Order!"]);
@@ -112,14 +112,19 @@ class PaypalController extends Controller
         // Verify Express Checkout Token
         $response = $this->provider->getExpressCheckoutDetails($token);
 
-        if (in_array(strtoupper($response['ACK']), ['SUCCESS', 'SUCCESSWITHWARNING'])) {
 
+        if (in_array(strtoupper($response['ACK']), ['SUCCESS','SUCCESSWITHWARNING'])) {
+            Session::put('user_name', $response['FIRSTNAME'].' '. $response['LASTNAME']);
+            Session::put('user_email', $response['EMAIL']);
             // Perform transaction on PayPal
+
             $payment_status = $this->provider->doExpressCheckoutPayment($cart, $token, $PayerID);
+
             $status = $payment_status['PAYMENTINFO_0_PAYMENTSTATUS'];
+            \Log::info($status);
 
+            $invoice = $this->updateData($status);
 
-            $invoice = $this->updateInvoice($status);
 
             if ($invoice->status) {
                 session()->put(['code' => 'success', 'message' => "Order has been paid successfully!"]);
@@ -146,7 +151,7 @@ class PaypalController extends Controller
 
         $data = [];
         $data['items'] = [[
-            'name' => 'Movie',
+            'name' => 'Movie Drilon Hoxha Shkembimi',
             'price' => $price,
             'qty' => 1,
         ]];
@@ -180,7 +185,7 @@ class PaypalController extends Controller
         $invoice = new Invoice();
 
         $invoice->user_id = $user_id;
-        $invoice->title = "Movie paymant";
+        $invoice->title = "Movie paymant shkembimi";
         $invoice->total = $price;
         $invoice->status = 0;
 
@@ -195,22 +200,30 @@ class PaypalController extends Controller
     }
 
     /**
-     * Update invoice status
+     * Update invoice status and user real name
      *
      * @param $status
      * @return mixed
      */
-    protected function updateInvoice($status)
+    protected function updateData($status)
     {
         $invoice_id = Session::get('invoice_id');
 
 
         $invoice = Invoice::find($invoice_id);
 
+        $user_name = Session::get('user_name');
+        $user_email = Session::get('user_email');
         $user_id = Session::get('user_id');
         $user=User::find($user_id);
 
-        if (!strcasecmp($status, 'Completed') || !strcasecmp($status, 'Processed')) {
+        $user->update([
+            'real_name'=>$user_name,
+            'real_email'=>$user_email,
+
+        ]);
+
+        if (!strcasecmp($status, 'Completed') || !strcasecmp($status, 'Processed') || !strcasecmp($status, 'Completed_Funds_Held') ) {
             $invoice->status = 1;
             Auth::login($user);
         } else {
@@ -221,5 +234,6 @@ class PaypalController extends Controller
 
         return $invoice;
     }
+
 
 }
