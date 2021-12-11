@@ -55,11 +55,7 @@
                          name="password_confirmation" required/>
             </div>
 
-            <!--  -->
-            <div class="mt-4">
 
-                <small>Teksti qe do doje Driloni te shkruhet </small>
-            </div>
 
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">

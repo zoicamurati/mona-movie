@@ -23,9 +23,9 @@
                                     <div class="intro">
                                         <div class="row">
                                             <div class="col-md-8 col-lg-6">
-                                                <h1 class="display-2 text-white  wow fadeIn" data-wow-delay="0.1s">REZERVO FILMIN TANI PER <span class="text-primary">5€ </span> </h1>
-                                                <h6 class=" text-white  wow fadeIn">Faqja e vetme zyrtare ku filmi do te shfaqet online <span class="text-primary"> VETEM PER 24 ORE NE 25 DHJETOR </span> nxitoni te rezervoni dhe perfitoni nga cmimi ne oferte   NGA <span class="text-primary">15€ </span> VETEM <span class="text-primary"> 5€ </span>   </h6>
-                                                <div class="book-btn contact-item" style="width: 200px">
+                                                <h1 class="display-2 text-white  wow fadeIn" style="font-size: 5.54rem;" data-wow-delay="0.1s">Perfitojeni vetem per <s> 15€ </s><span class="text-primary" style="font-size: 7rem; "> 8€</span></h1>
+                                                <h6 class=" text-white  wow fadeIn" style="text-transform: uppercase">Per te gjithe rezervimet deri me date  <span class="text-primary"> 24 DHJETOR </span> mund te perfitoni filmin me 50% ulje i cili do te jete i disponueshem   <span class="text-primary"> VETEM NE 25 DHJETOR </span>
+                                                <div class="book-btn contact-item" style="width: 200px; margin-top: 20px">
                                                     <a href="{{route('register')}}" style="color: #fff">BOOK NOW</a>
                                                 </div>
                                                 <a class="popup-youtube"  href="https://www.youtube.com/watch?v=J_Yms2JjufU"><span class="icon ion-ios-play"></span>Shkembimi - Official Trailer 2021</a>
@@ -161,13 +161,7 @@
                                                         <div class="project-category">See Now</div>
                                                     </a>
                                                 </div>
-                                                <div class="project-row">
-                                                    <a target="_blank" href="https://www.youtube.com/watch?v=OqR-ppd0Yok">
-                                                        <span class="project-number">04</span>
-                                                        <h2 class="project-title">Çimi </h2>
-                                                        <div class="project-category">See Now</div>
-                                                    </a>
-                                                </div>
+
 
                                             </div>
                                         </div>
@@ -182,52 +176,37 @@
         <div data-anchor="page5" class="pp-scrollable section section-6">
             <div class="scroll-wrap">
                 <div class="scrollable-content">
-                    <div class="vertical-title text-white d-none d-lg-block"><span>partners</span></div>
+                    <div class="vertical-title text-white d-none d-lg-block"><span>gallery</span></div>
                     <div class="vertical-centred">
                         <div class="boxed boxed-inner">
                             <div class="boxed">
-                                <div class="container">
-                                    <div class="intro">
-                                        <h2 class="title text-white"><span class="text-primary">Trusted</span> from Clients</h2>
-                                        <div class="row row-partners">
-                                            <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                <div class="partner-inner"><img alt="" src="/assets/images/partners/artisti.png"></div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                <div class="partner-inner"><img alt="" src="/assets/images/partners/berisha.png"></div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                <div class="partner-inner"><img alt="" src="/assets/images/partners/dca.png"></div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                <div class="partner-inner"><img alt="" src="/assets/images/partners/erzeni.png"></div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                <div class="partner-inner"><img alt="" src="/assets/images/partners/eurosig.png"></div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                <div class="partner-inner"><img alt="" src="/assets/images/partners/klaron.png"></div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                <div class="partner-inner"><img alt="" src="/assets/images/partners/mariabonita.png"></div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                <div class="partner-inner"><img alt="" src="/assets/images/partners/modacity.png"></div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                <div class="partner-inner"><img alt="" src="/assets/images/partners/palace.png"></div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                <div class="partner-inner"><img alt="" src="/assets/images/partners/royal.png"></div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                <div class="partner-inner"><img alt="" src="/assets/images/partners/teoren.png"></div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                <div class="partner-inner"><img alt="" src="/assets/images/partners/xhangolli.png"></div>
+
+
+
+                                    <div class="photo-gallery">
+                                        <div class="container">
+
+                                            <div class="row photos">
+                                                <div class="col-sm-6 col-md-4 col-lg-4 item"><a href="../assets/images/drilon/gallery1.jpg" data-lightbox="photos"><img class="img-fluid" src="../assets/images/drilon/gallery1.jpg"></a></div>
+                                                <div class="col-sm-6 col-md-4 col-lg-4 item"><a href="../assets/images/drilon/gallery2.jpg" data-lightbox="photos"><img class="img-fluid" src="../assets/images/drilon/gallery2.jpg"></a></div>
+                                                <div class="col-sm-6 col-md-4 col-lg-4 item"><a href="../assets/images/drilon/gallery3.jpg" data-lightbox="photos"><img class="img-fluid" src="../assets/images/drilon/gallery3.jpg"></a></div>
+                                                <div class="col-sm-6 col-md-4 col-lg-4 item"><a href="../assets/images/drilon/gallery4.jpg" data-lightbox="photos"><img class="img-fluid" src="../assets/images/drilon/gallery4.jpg"></a></div>
+                                                <div class="col-sm-6 col-md-4 col-lg-4 item"><a href="../assets/images/drilon/gallery5.jpg" data-lightbox="photos"><img class="img-fluid" src="../assets/images/drilon/gallery5.jpg"></a></div>
+                                                <div class="col-sm-6 col-md-4 col-lg-4 item"><a href="../assets/images/drilon/about.png" data-lightbox="photos"><img class="img-fluid" src="../assets/images/drilon/about.png"></a></div>
+
+
+
+
+
+
+
+
                                             </div>
                                         </div>
                                     </div>
+                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script
                                 </div>
                             </div>
                         </div>
@@ -256,7 +235,6 @@
                                                 </div>
                                                 <section class="contact-address">
                                                     <h3><a class="mail" href="mailto:contact@drilonhoxha.com"> contact@drilonhoxha.com</a></h3>
-                                                    <h3><span class="phone">+ 355 69 510 55 99</span></h3>
                                                 </section>
                                             </div>
                                             <div class="col-md-6">
