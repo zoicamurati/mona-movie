@@ -107,7 +107,7 @@
             </button>
         @endif
 
-        @if((Route::is('movie')  ||  Route::is('createTransaction')) && Auth::user()->role ==1 )
+        @if((Route::is('movie')  ||  Route::is('createTransaction'))  && Auth::check() && Auth::user()->role ==1 )
             <div class="navbar-toggle book-btn contact-item">
                 <a href="{{route('panel')}}" class="text-white">Shko ne Panel</a>
             </div>
@@ -176,6 +176,7 @@
 
 
     <script src="{{ asset('/assets/js/scripts.js') }}"></script>
+</div>
 </body>
 </html>
 
