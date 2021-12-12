@@ -15,7 +15,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users=User::where('role',0)->orderBy('created_at','desc')->get();
+        $users=User::where('role',0)
+           -> whereHas('invoices', function($q){
+                $q->where('status', '=', 1);})
+            ->orderBy('created_at','desc')->get();
 
         return view('panel.users.index', compact('users'));
     }

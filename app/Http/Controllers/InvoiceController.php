@@ -16,7 +16,8 @@ class InvoiceController extends Controller
     public function index()
     {
         $total = Invoice::where('status', 1)->sum('total');
-        $users = User::where('role', 0)->count();
+        $users = User::where('role', 0)-> whereHas('invoices', function($q){
+            $q->where('status', '=', 1);})->count();
 
         return view('panel.pagesat.index', compact(['users', 'total']));
     }

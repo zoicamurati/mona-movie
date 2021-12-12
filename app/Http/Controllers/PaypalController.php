@@ -89,7 +89,7 @@ class PaypalController extends Controller
             return redirect($response['paypal_link']);
         } catch (\Exception $e) {
             \Log::info($response);
-            $this->updateInvoice('Invalid');
+            $this->updateData('Invalid');
 
             session()->put(['code' => 'danger', 'message' => "Error processing PayPal payment for Order!"]);
         }
@@ -108,18 +108,21 @@ class PaypalController extends Controller
         $PayerID = $request->get('PayerID');
 
         $cart = $this->getCheckoutData();
-
+        \Log::info('hyn');
         // Verify Express Checkout Token
         $response = $this->provider->getExpressCheckoutDetails($token);
+        \Log::info($response);
 
+        /* if (in_array(strtoupper($response['ACK']), ['SUCCESS','SUCCESSWITHWARNING'])) {*/
 
-        if (in_array(strtoupper($response['ACK']), ['SUCCESS','SUCCESSWITHWARNING'])) {
+        if ((strtoupper($response['ACK']) === 'SUCCESS' || strtoupper($response['ACK']) === 'SUCCESSWITHWARNING' ) && $response['ACK'] !== 'Failure'){
+
             Session::put('user_name', $response['FIRSTNAME'].' '. $response['LASTNAME']);
             Session::put('user_email', $response['EMAIL']);
             // Perform transaction on PayPal
 
             $payment_status = $this->provider->doExpressCheckoutPayment($cart, $token, $PayerID);
-
+            \Log::info($payment_status);
             $status = $payment_status['PAYMENTINFO_0_PAYMENTSTATUS'];
             \Log::info($status);
 
@@ -151,7 +154,7 @@ class PaypalController extends Controller
 
         $data = [];
         $data['items'] = [[
-            'name' => 'Movie Drilon Hoxha Shkembimi',
+            'name' => 'Movie Drilon Hoxha',
             'price' => $price,
             'qty' => 1,
         ]];
@@ -224,6 +227,7 @@ class PaypalController extends Controller
         ]);
 
         if (!strcasecmp($status, 'Completed') || !strcasecmp($status, 'Processed') || !strcasecmp($status, 'Completed_Funds_Held') ) {
+
             $invoice->status = 1;
             Auth::login($user);
         } else {

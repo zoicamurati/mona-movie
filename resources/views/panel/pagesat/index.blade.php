@@ -46,5 +46,5 @@
                 <p>©{{ now()->year }} <a href="https://digitalmoon.al/"> Digital Moon Agency </a> All Rights Reserved. </p>
             </div>
         </div>
-    </footer>
+    </footer>h
 @endsection
