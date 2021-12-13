@@ -65,19 +65,12 @@ class PaypalController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        event(new Registered($user));
 
 
         $price=Config::get('app.price');
-        $order = $this->createInvoice($price,$user->id);
+       // $order = $this->createInvoice($price,$user->id);
 
-        Session::put('user_id', $user->id);
+        //Session::put('user_id', $user->id);
         Session::put('total', $price);
 
         $cart = $this->getCheckoutData();
@@ -89,7 +82,7 @@ class PaypalController extends Controller
             return redirect($response['paypal_link']);
         } catch (\Exception $e) {
             \Log::info($response);
-            $this->updateData('Invalid');
+            //$this->updateData('Invalid');
 
             session()->put(['code' => 'danger', 'message' => "Error processing PayPal payment for Order!"]);
         }
@@ -217,19 +210,26 @@ class PaypalController extends Controller
 
         $user_name = Session::get('user_name');
         $user_email = Session::get('user_email');
-        $user_id = Session::get('user_id');
-        $user=User::find($user_id);
 
-        $user->update([
-            'real_name'=>$user_name,
-            'real_email'=>$user_email,
+        $request_name = Session::get('request_name');
+        $request_email = Session::get('request_email');
+        $request_password = Session::get('request_password');
 
-        ]);
 
         if (!strcasecmp($status, 'Completed') || !strcasecmp($status, 'Processed') || !strcasecmp($status, 'Completed_Funds_Held') ) {
+            $user = User::create([
+                'name' => $request_name,
+                'email' => $request_email,
+                'password' => Hash::make($request_password),
+                'real_name'=>$user_name,
+                'real_email'=>$user_email,
+            ]);
+
+            event(new Registered($user));
 
             $invoice->status = 1;
             Auth::login($user);
+
         } else {
             $invoice->status = 0;
         }
