@@ -14,8 +14,8 @@ class AddRealDataToUserTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('real_name')->after('email')->nullable();
-            $table->boolean('real_email')->after('real_name')->nullable();
+            $table->string('real_name')->after('email')->nullable();
+            $table->string('real_email')->after('real_name')->nullable();
 
         });
     }
