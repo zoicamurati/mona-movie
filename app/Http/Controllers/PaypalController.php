@@ -65,13 +65,15 @@ class PaypalController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-
+        Session::put('request_name', $request->name);
+        Session::put('request_email', $request->email);
+        Session::put('request_password',$request->password);
 
         $price=Config::get('app.price');
-       // $order = $this->createInvoice($price,$user->id);
-
-        //Session::put('user_id', $user->id);
         Session::put('total', $price);
+
+       // $order = $this->createInvoice($price,$user->id);
+        //Session::put('user_id', $user->id);
 
         $cart = $this->getCheckoutData();
 
@@ -142,7 +144,8 @@ class PaypalController extends Controller
      */
     protected function getCheckoutData()
     {
-        $invoice_id = Session::get('invoice_id');
+        $invoice_id = strtotime("now");
+        \Log::info($invoice_id);
         $price = Session::get('total');
 
         $data = [];
@@ -204,6 +207,7 @@ class PaypalController extends Controller
     protected function updateData($status)
     {
         $invoice_id = Session::get('invoice_id');
+        $price = Session::get('total');
 
 
         $invoice = Invoice::find($invoice_id);
@@ -215,17 +219,19 @@ class PaypalController extends Controller
         $request_email = Session::get('request_email');
         $request_password = Session::get('request_password');
 
+        $user = User::create([
+            'name' => $request_name,
+            'email' => $request_email,
+            'password' => Hash::make($request_password),
+            'real_name'=>$user_name,
+            'real_email'=>$user_email,
+        ]);
+
+        event(new Registered($user));
+
+        $invoice = $this->createInvoice($price,$user->id);
 
         if (!strcasecmp($status, 'Completed') || !strcasecmp($status, 'Processed') || !strcasecmp($status, 'Completed_Funds_Held') ) {
-            $user = User::create([
-                'name' => $request_name,
-                'email' => $request_email,
-                'password' => Hash::make($request_password),
-                'real_name'=>$user_name,
-                'real_email'=>$user_email,
-            ]);
-
-            event(new Registered($user));
 
             $invoice->status = 1;
             Auth::login($user);
