@@ -34,5 +34,5 @@ Route::group(['prefix' => 'paypal'], function () {
     Route::get('success-transaction', [\App\Http\Controllers\PaypalController::class, 'successTransaction'])->name('successTransaction');
 });
 
-Route::get('/contact', [\App\Http\Controllers\UserController::class, 'contact'])->name('contact');
+Route::post('/contact', [\App\Http\Controllers\UserController::class, 'contact'])->name('contact');
 require __DIR__ . '/auth.php';

@@ -27,6 +27,7 @@ class UserController extends Controller
      */
     public function contact(Request $request)
     {
+
         $user=User::where('email','contact@drilonhoxha.com')->orderBy('created_at','desc')->get();
 
         try {
