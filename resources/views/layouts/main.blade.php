@@ -19,6 +19,9 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:500,600,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,400i&display=swap" rel="stylesheet">
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" media="screen">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
 </head>
 <body>
 <div class="animsition">
@@ -174,8 +177,9 @@
     {{--    })--}}
     {{--</script>--}}
 
-
     <script src="{{ asset('/assets/js/scripts.js') }}"></script>
+
+
 </div>
 </body>
 </html>
