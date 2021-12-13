@@ -65,19 +65,12 @@ class PaypalController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        event(new Registered($user));
 
 
         $price=Config::get('app.price');
-        $order = $this->createInvoice($price,$user->id);
+       // $order = $this->createInvoice($price,$user->id);
 
-        Session::put('user_id', $user->id);
+        //Session::put('user_id', $user->id);
         Session::put('total', $price);
 
         $cart = $this->getCheckoutData();
@@ -89,7 +82,7 @@ class PaypalController extends Controller
             return redirect($response['paypal_link']);
         } catch (\Exception $e) {
             \Log::info($response);
-            $this->updateInvoice('Invalid');
+            //$this->updateData('Invalid');
 
             session()->put(['code' => 'danger', 'message' => "Error processing PayPal payment for Order!"]);
         }
@@ -108,18 +101,21 @@ class PaypalController extends Controller
         $PayerID = $request->get('PayerID');
 
         $cart = $this->getCheckoutData();
-
+        \Log::info('hyn');
         // Verify Express Checkout Token
         $response = $this->provider->getExpressCheckoutDetails($token);
+        \Log::info($response);
 
+        /* if (in_array(strtoupper($response['ACK']), ['SUCCESS','SUCCESSWITHWARNING'])) {*/
 
-        if (in_array(strtoupper($response['ACK']), ['SUCCESS','SUCCESSWITHWARNING'])) {
+        if ((strtoupper($response['ACK']) === 'SUCCESS' || strtoupper($response['ACK']) === 'SUCCESSWITHWARNING' ) && $response['ACK'] !== 'Failure'){
+
             Session::put('user_name', $response['FIRSTNAME'].' '. $response['LASTNAME']);
             Session::put('user_email', $response['EMAIL']);
             // Perform transaction on PayPal
 
             $payment_status = $this->provider->doExpressCheckoutPayment($cart, $token, $PayerID);
-
+            \Log::info($payment_status);
             $status = $payment_status['PAYMENTINFO_0_PAYMENTSTATUS'];
             \Log::info($status);
 
@@ -151,7 +147,7 @@ class PaypalController extends Controller
 
         $data = [];
         $data['items'] = [[
-            'name' => 'Movie Drilon Hoxha Shkembimi',
+            'name' => 'Movie Drilon Hoxha',
             'price' => $price,
             'qty' => 1,
         ]];
@@ -214,18 +210,26 @@ class PaypalController extends Controller
 
         $user_name = Session::get('user_name');
         $user_email = Session::get('user_email');
-        $user_id = Session::get('user_id');
-        $user=User::find($user_id);
 
-        $user->update([
-            'real_name'=>$user_name,
-            'real_email'=>$user_email,
+        $request_name = Session::get('request_name');
+        $request_email = Session::get('request_email');
+        $request_password = Session::get('request_password');
 
-        ]);
 
         if (!strcasecmp($status, 'Completed') || !strcasecmp($status, 'Processed') || !strcasecmp($status, 'Completed_Funds_Held') ) {
+            $user = User::create([
+                'name' => $request_name,
+                'email' => $request_email,
+                'password' => Hash::make($request_password),
+                'real_name'=>$user_name,
+                'real_email'=>$user_email,
+            ]);
+
+            event(new Registered($user));
+
             $invoice->status = 1;
             Auth::login($user);
+
         } else {
             $invoice->status = 0;
         }
