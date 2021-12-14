@@ -25,10 +25,10 @@
                                             <div class="col-md-8 col-lg-6">
                                                 <h1 class="display-2 text-white  wow fadeIn" style="font-size: 5.54rem;" data-wow-delay="0.1s">Perfitojeni vetem per <s> 15€ </s><span class="text-primary" style="font-size: 7rem; "> 8€</span></h1>
                                                 <h6 class=" text-white  wow fadeIn" style="text-transform: uppercase">Per te gjithe rezervimet deri me date  <span class="text-primary"> 24 DHJETOR </span> mund te perfitoni filmin me 50% ulje i cili do te jete i disponueshem   <span class="text-primary"> VETEM NE 25 DHJETOR </span>
-                                                <div class="book-btn contact-item" style="width: 200px; margin-top: 20px">
-                                                    <a href="{{route('register')}}" style="color: #fff">BOOK NOW</a>
-                                                </div>
-                                                <a class="popup-youtube"  href="https://www.youtube.com/watch?v=J_Yms2JjufU"><span class="icon ion-ios-play"></span>Shkembimi - Official Trailer 2021</a>
+                                                    <div class="book-btn contact-item" style="width: 200px; margin-top: 20px">
+                                                        <a href="{{route('register')}}" style="color: #fff">BOOK NOW</a>
+                                                    </div>
+                                                    <a class="popup-youtube"  href="https://www.youtube.com/watch?v=J_Yms2JjufU"><span class="icon ion-ios-play"></span>Shkembimi - Official Trailer 2021</a>
                                             </div>
                                         </div>
                                     </div>
@@ -57,7 +57,7 @@
                                                 <div class="film-image"><img alt="" src="/assets/images/drilon/shkembimi.png" class="img-fluid"></div>
                                             </div>
                                             <div class="view-all">
-                                                <a class="book-btn" href="#">
+                                                <a class="book-btn" href="{{route('register')}}">
                                                     BOOK NOW
                                                 </a>
                                             </div>
@@ -141,7 +141,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="project-row">
-                                                    <a class="active" >
+                                                    <a class="active" href="{{route('register')}}" >
                                                         <span class="project-number">01</span>
                                                         <h2 class="project-title">Shkembimi</h2>
                                                         <div class="project-category">Book Now</div>
@@ -183,104 +183,103 @@
 
 
 
-                                    <div class="photo-gallery">
-                                        <div class="container">
+                                <div class="photo-gallery">
+                                    <div class="container">
 
-                                            <div class="row photos">
-                                                <div class="col-sm-6 col-md-4 col-lg-4 item"><a href="../assets/images/drilon/gallery1.jpg" data-lightbox="photos"><img class="img-fluid" src="../assets/images/drilon/gallery1.jpg"></a></div>
-                                                <div class="col-sm-6 col-md-4 col-lg-4 item"><a href="../assets/images/drilon/gallery2.jpg" data-lightbox="photos"><img class="img-fluid" src="../assets/images/drilon/gallery2.jpg"></a></div>
-                                                <div class="col-sm-6 col-md-4 col-lg-4 item"><a href="../assets/images/drilon/gallery3.jpg" data-lightbox="photos"><img class="img-fluid" src="../assets/images/drilon/gallery3.jpg"></a></div>
-                                                <div class="col-sm-6 col-md-4 col-lg-4 item"><a href="../assets/images/drilon/gallery4.jpg" data-lightbox="photos"><img class="img-fluid" src="../assets/images/drilon/gallery4.jpg"></a></div>
-                                                <div class="col-sm-6 col-md-4 col-lg-4 item"><a href="../assets/images/drilon/gallery5.jpg" data-lightbox="photos"><img class="img-fluid" src="../assets/images/drilon/gallery5.jpg"></a></div>
-                                                <div class="col-sm-6 col-md-4 col-lg-4 item"><a href="../assets/images/drilon/about.png" data-lightbox="photos"><img class="img-fluid" src="../assets/images/drilon/about.png"></a></div>
-
-
+                                        <div class="row photos">
+                                            <div class="col-sm-6 col-md-4 col-lg-4 item"><a href="../assets/images/drilon/gallery1.jpg" data-lightbox="photos"><img class="img-fluid" src="../assets/images/drilon/gallery1.jpg"></a></div>
+                                            <div class="col-sm-6 col-md-4 col-lg-4 item"><a href="../assets/images/drilon/gallery2.jpg" data-lightbox="photos"><img class="img-fluid" src="../assets/images/drilon/gallery2.jpg"></a></div>
+                                            <div class="col-sm-6 col-md-4 col-lg-4 item"><a href="../assets/images/drilon/gallery3.jpg" data-lightbox="photos"><img class="img-fluid" src="../assets/images/drilon/gallery3.jpg"></a></div>
+                                            <div class="col-sm-6 col-md-4 col-lg-4 item"><a href="../assets/images/drilon/gallery4.jpg" data-lightbox="photos"><img class="img-fluid" src="../assets/images/drilon/gallery4.jpg"></a></div>
+                                            <div class="col-sm-6 col-md-4 col-lg-4 item"><a href="../assets/images/drilon/gallery5.jpg" data-lightbox="photos"><img class="img-fluid" src="../assets/images/drilon/gallery5.jpg"></a></div>
+                                            <div class="col-sm-6 col-md-4 col-lg-4 item"><a href="../assets/images/drilon/about.png" data-lightbox="photos"><img class="img-fluid" src="../assets/images/drilon/about.png"></a></div>
 
 
 
 
 
 
-                                            </div>
+
+
                                         </div>
                                     </div>
-                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
-                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script
                                 </div>
+                                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                                <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+                                <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div data-anchor="page6" class="pp-scrollable section section-8">
-            <div class="scroll-wrap">
-                <div class="section-bg" style="background-image:url('/assets/images/drilon/black.jpg')"></div>
-                <div class="scrollable-content">
-                    <div class="vertical-title text-white d-none d-lg-block"><span>contact</span></div>
-                    <div class="vertical-centred">
-                        <div class="boxed boxed-inner">
-                            <div class="boxed">
-                                <div class="container">
-                                    <div class="intro overflow-hidden">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <h2 class="title"><span class="text-primary">Tirana</span>, Albania</h2>
-                                                <div class="social-icons">
-                                                    <a target="_blank" href="https://www.youtube.com/c/DrilonHoxhaOfficial">   <div class="social-icon"><img alt="" class="img-fluid" src="images/drilon/ytwhite.png"></div></a>
-                                                    <a target="_blank" href="https://www.facebook.com/Official.Drilon.Hoxha">   <div class="social-icon"><img alt=""  class="img-fluid"  src="images/drilon/fbwhite.png"></div></a>
-                                                    <a target="_blank" href="https://www.instagram.com/drilonhoxha/">   <div class="social-icon"><img alt=""  class="img-fluid" src="images/drilon/igwhite.png"></div></a>
-                                                </div>
-                                                <section class="contact-address">
-                                                    <h3><a class="mail" href="mailto:contact@drilonhoxha.com"> contact@drilonhoxha.com</a></h3>
-                                                </section>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div >
-                                                    <form method="post" action="{{route('contact')}}" >
-                                                        @csrf
-                                                        <div class="row">
-                                                            <div class="form-group col-sm-6">
-                                                                <input type="text" name="name" required="" placeholder="Name*" aria-required="true">
-                                                            </div>
-                                                            <div class="form-group col-sm-6">
-                                                                <input type="email" required="" name="email" placeholder="Email*">
-                                                            </div>
-                                                            <div class="form-group col-sm-12">
-                                                                <input type="text" name="subject" placeholder="Subject (Optinal)">
-                                                            </div>
-                                                            <div class="form-group col-sm-12">
-                                                                <textarea name="message" required="" placeholder="Message*"></textarea>
-                                                            </div>
-                                                            <div class="form-group form-group-message col-sm-12">
-                                                                <span id="success" class="text-primary">Thank You, your message is successfully sent!</span>
-                                                                <span id="error" class="text-primary">Sorry, something went wrong </span>
-                                                            </div>
-                                                            <div class="col-sm-12"><button type="submit" class="btn">Contact me</button></div>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
-                </div>
-
-            </div>
-
-
         </div>
     </div>
-</div>
+
+    <div data-anchor="page6" class="pp-scrollable section section-8">
+        <div class="scroll-wrap">
+            <div class="section-bg" style="background-image:url('/assets/images/drilon/black.jpg')"></div>
+            <div class="scrollable-content">
+                <div class="vertical-title text-white d-none d-lg-block"><span>contact</span></div>
+                <div class="vertical-centred">
+                    <div class="boxed boxed-inner">
+                        <div class="boxed">
+                            <div class="container">
+                                <div class="intro overflow-hidden">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h2 class="title"><span class="text-primary">Tirana</span>, Albania</h2>
+                                            <div class="social-icons">
+                                                <a target="_blank" href="https://www.youtube.com/c/DrilonHoxhaOfficial">   <div class="social-icon"><img alt="" class="img-fluid" src="../assets/images/drilon/ytwhite.png"></div></a>
+                                                <a target="_blank" href="https://www.facebook.com/Official.Drilon.Hoxha">   <div class="social-icon"><img alt=""  class="img-fluid"  src="../assets/images/drilon/fbwhite.png"></div></a>
+                                                <a target="_blank" href="https://www.instagram.com/drilonhoxha/">   <div class="social-icon"><img alt=""  class="img-fluid" src="../assets/images/drilon/igwhite.png"></div></a>
+                                            </div>
+                                            <section class="contact-address">
+                                                <h3><a class="mail" href="mailto:contact@drilonhoxha.com"> contact@drilonhoxha.com</a></h3>
+                                            </section>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="contact-info">
+                                                <form class="js-form" novalidate="novalidate" >
+                                                    <div class="row">
+                                                        <div class="form-group col-sm-6">
+                                                            <input type="text" name="name" required="" placeholder="Name*" aria-required="true">
+                                                        </div>
+                                                        <div class="form-group col-sm-6">
+                                                            <input type="email" required="" name="email" placeholder="Email*">
+                                                        </div>
+                                                        <div class="form-group col-sm-12">
+                                                            <input type="text" name="subject" placeholder="Subject (Optinal)">
+                                                        </div>
+                                                        <div class="form-group col-sm-12">
+                                                            <textarea name="message" required="" placeholder="Message*"></textarea>
+                                                        </div>
+                                                        <div class="form-group form-group-message col-sm-12">
+                                                            <span id="success" class="text-primary">Thank You, your message is successfully sent!</span>
+                                                            <span id="error" class="text-primary">Sorry, something went wrong </span>
+                                                        </div>
+                                                        <div class="col-sm-12"><button type="submit" class="btn">Contact me</button></div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+    </div>
+    </div>
 @endsection
