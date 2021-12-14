@@ -56,13 +56,13 @@
                     <a href="#page4">Production</a>
                 </li>
                 <li data-menuanchor="page5">
-                    <a href="#page5">Partners</a>
+                    <a href="#page5">Gallery</a>
                 </li>
                 <li data-menuanchor="page6">
                     <a href="#page6">Contact</a>
                 </li>
                 <li class="book-now" data-menuanchor="">
-                    <a href="">BOOK NOW </a>
+                    <a href="{{route('register')}}">BOOK NOW </a>
                 </li>
             </ul>
             <div class="menu-footer right-boxed">

@@ -250,7 +250,7 @@
                                                 <section class="contact-address">
                                                     <h3><a class="mail" href="mailto:contact@drilonhoxha.com">
                                                             contact@drilonhoxha.com</a></h3>
-                                                    <h3><span class="phone">+ 355 69 510 55 99</span></h3>
+
                                                 </section>
                                             </div>
                                             <div class="col-md-6">
