@@ -45,8 +45,10 @@ class NewContactCreated extends Notification implements ShouldQueue
     {
         return (new MailMessage)
             ->greeting('Pershendetje')
+            ->from($address = 'noreply@domain.com', $name = $this->data['name'])
             ->subject($this->data['subject'] ? $this->data['subject'] : 'Kontakt i ri')
-            ->line($this->data['name'].' me email' .' ka shrkuajtur '. $this->data['message'] );
+            ->line($this->data['name'].' me email '.$this->data['email'] .' ka shkruajtur '. $this->data['message'] )
+            ->salutation('Kalofsh mire!');
 
     }
 

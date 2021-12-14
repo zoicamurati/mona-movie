@@ -144,7 +144,7 @@ class PaypalController extends Controller
      */
     protected function getCheckoutData()
     {
-        $invoice_id = strtotime("now");
+        $invoice_id = uniqid();
         \Log::info($invoice_id);
         $price = Session::get('total');
 

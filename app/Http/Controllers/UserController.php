@@ -15,10 +15,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users=User::where('role',0)
-           -> whereHas('invoices', function($q){
-                $q->where('status', '=', 1);})
-            ->orderBy('created_at','desc')->get();
+        $users = User::where('role', 0)
+            ->whereHas('invoices', function ($q) {
+                $q->where('status', '=', 1);
+            })
+            ->orderBy('created_at', 'desc')->get();
 
         return view('panel.users.index', compact('users'));
     }
@@ -30,16 +31,25 @@ class UserController extends Controller
      */
     public function contact(Request $request)
     {
-        $user=User::where('email','contact@drilonhoxha.com')->orderBy('created_at','desc')->first();
+        $user = User::where('email', 'contact@drilonhoxha.com')->orderBy('created_at', 'desc')->first();
 
         try {
             $user->notify(new NewContactCreated($request->all()));
+
+            $notification = array(
+                'message' => 'Mesazhi u dergua me suksese!',
+                'alert-type' => 'success'
+            );
+
         } catch (\Exception $e) {
             \Log::info($e->getMessage());
+            $notification = array(
+                'message' => 'Mesazhi nuk u dergua me suksese!',
+                'alert-type' => 'error'
+            );
         }
 
-        return  redirect()->back()->with('success', 'your message,here');
-
+        return redirect()->back()->with($notification);
 
     }
 }
