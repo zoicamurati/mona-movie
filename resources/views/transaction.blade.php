@@ -1,5 +1,6 @@
 @extends('layouts.main')
 @section('content')
+    <div class="section-bg mobile-bg" style="background-image:url('assets/images/drilon/banertest.png') "></div>
     <div class="alert alert payment-msg">
         @if(\Session::has('error'))
             <h1 class="" style="margin: 20px">{{ \Session::get('error') }}</h1>
@@ -15,12 +16,10 @@
                 {{$response['message']}}
             </h1>
         @endif
-        {{-- <div class="alert alert-danger" style="margin: 20px">{{ "pse" }}</div>
-         <div class="alert alert-success" style="margin: 20px">{{"po "}}</div>
 
-            <h1>hahahhaha hahahhaha
-                hahahhaha</h1>--}}
-        <p>hahhahah</p>
+            <h2 style="color: #fff;text-align: center; text-transform: uppercase">Filmi do te shfaqet me date 25 Dhjetor  </h2>
+            <h6>Do të mund ta shikoni pasi të jeni loguar me Emailin dhe Passwordin e vendosur nga ju,<br> gjithashtu do të merrni në email link-un e filmit. </h6>
+    </div>
     </div>
 @endsection
 

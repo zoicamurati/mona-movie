@@ -1,24 +1,20 @@
+
 @extends('layouts.main')
 @section('content')
+
+
     <div class="social-list social-list-bottom boxed">
         <div class="social-icons">
-            <a target="_blank" href="https://www.youtube.com/c/DrilonHoxhaOfficial">
-                <div class="social-icon"><img alt="" class="img-fluid" src="/assets/images/drilon/ytwhite.png"></div>
-            </a>
-            <a target="_blank" href="https://www.facebook.com/Official.Drilon.Hoxha">
-                <div class="social-icon"><img alt="" class="img-fluid" src="/assets/images/drilon/fbwhite.png"></div>
-            </a>
-            <a target="_blank" href="https://www.instagram.com/drilonhoxha/">
-                <div class="social-icon"><img alt="" class="img-fluid" src="/assets/images/drilon/igwhite.png"></div>
-            </a>
+            <a target="_blank" href="https://www.youtube.com/c/DrilonHoxhaOfficial">   <div class="social-icon"><img alt="" class="img-fluid" src="/assets/images/drilon/ytwhite.png"></div></a>
+            <a target="_blank" href="https://www.facebook.com/Official.Drilon.Hoxha">   <div class="social-icon"><img alt=""  class="img-fluid"  src="/assets/images/drilon/fbwhite.png"></div></a>
+            <a target="_blank" href="https://www.instagram.com/drilonhoxha/">   <div class="social-icon"><img alt=""  class="img-fluid" src="/assets/images/drilon/igwhite.png"></div></a>
         </div>
 
     </div>
     <div class="pagepiling">
         <div data-anchor="page1" class="pp-scrollable text-white section section-1">
             <div class="scroll-wrap">
-                <div class="section-bg mobile-bg"
-                     style="background-image:url('assets/images/drilon/main-slider.png') "></div>
+                <div class="section-bg mobile-bg" style="background-image:url('assets/images/drilon/banertest.png') "></div>
                 <div class="scrollable-content">
                     <div class="vertical-centred">
                         <div class="boxed boxed-inner">
@@ -27,12 +23,12 @@
                                     <div class="intro">
                                         <div class="row">
                                             <div class="col-md-8 col-lg-6">
-                                                <h1 class="display-2 text-white  wow fadeIn" data-wow-delay="0.1s"><span
-                                                            class="text-primary">Drilon Hoxha</span> Production</h1>
-                                                <a class="popup-youtube"
-                                                   href="https://www.youtube.com/watch?v=J_Yms2JjufU"><span
-                                                            class="icon ion-ios-play"></span>Shkembimi - Official
-                                                    Trailer 2021</a>
+                                                <h1 class="display-2 text-white  wow fadeIn" style="font-size: 5.54rem;" data-wow-delay="0.1s">Perfitojeni vetem per <s> 15€ </s><span class="text-primary" style="font-size: 7rem; "> 8€</span></h1>
+                                                <h6 class=" text-white  wow fadeIn" style="text-transform: uppercase">Per te gjithe rezervimet deri me date  <span class="text-primary"> 24 DHJETOR </span> mund te perfitoni filmin me 50% ulje i cili do te jete i disponueshem   <span class="text-primary"> VETEM NE 25 DHJETOR </span>
+                                                    <div class="book-btn contact-item" style="width: 200px; margin-top: 20px">
+                                                        <a href="{{route('register')}}" style="color: #fff">BOOK NOW</a>
+                                                    </div>
+                                                    <a class="popup-youtube"  href="https://www.youtube.com/watch?v=J_Yms2JjufU"><span class="icon ion-ios-play"></span>Shkembimi - Official Trailer 2021</a>
                                             </div>
                                         </div>
                                     </div>
@@ -54,24 +50,14 @@
                                     <div class="intro">
                                         <div class="row-specialization row">
                                             <div class="col-specialization col-md-6 col-lg-6">
-                                                <h1 class="text-uppercase"> THE trade <span class="text-primary"> / SHkembimi</span>
-                                                </h1>
-                                                <p>The paradoxical lives of two brothers, one in Albania and the other
-                                                    in America, whose stories unite and divide at the moment of
-                                                    inheriting property. An essential problem of our country that
-                                                    because of this, the consequences suffer the descendants and exactly
-                                                    the action part of the film begins when the daughter of one of the
-                                                    brothers is kidnapped, which will test the love of her boyfriend.
-                                                    Love for the girl makes her sacrifice everyone and blinded by love
-                                                    takes any kind of risk to have the girl close again.</p>
+                                                <h1 class="text-uppercase"> THE trade <span class="text-primary"> / SHkembimi</span> </h1>
+                                                <p>The paradoxical lives of two brothers, one in Albania and the other in America, whose stories unite and divide at the moment of inheriting property. An essential problem of our country that because of this, the consequences suffer the descendants and exactly the action part of the film begins when the daughter of one of the brothers is kidnapped, which will test the love of her boyfriend. Love for the girl makes her sacrifice everyone and blinded by love takes any kind of risk to have the girl close again.</p>
                                             </div>
                                             <div class="col-specialization col-md-6 col-lg-6">
-                                                <div class="film-image"><img alt=""
-                                                                             src="/assets/images/drilon/shkembimi.png"
-                                                                             class="img-fluid"></div>
+                                                <div class="film-image"><img alt="" src="/assets/images/drilon/shkembimi.png" class="img-fluid"></div>
                                             </div>
                                             <div class="view-all">
-                                                <a class="book-btn" href="#">
+                                                <a class="book-btn" href="{{route('register')}}">
                                                     BOOK NOW
                                                 </a>
                                             </div>
@@ -102,28 +88,11 @@
                                                     <div class="resume-content">
                                                         <div class="resume-inner">
                                                             <div class="resume-row">
-                                                                <p class="resume-text"> Drilon Hoxha is an albanian
-                                                                    actor born in Berat on June 16 1991, after a few
-                                                                    years he and his family moved in Tirana. He attended
-                                                                    the artistic high school “ Jordan Misja” for
-                                                                    painting and then the University for
-                                                                    directing-acting.</p>
+                                                                <p class="resume-text"> Drilon Hoxha is an albanian actor born in Berat on June 16 1991, after a few years he and his family moved in Tirana. He attended the artistic high school “ Jordan Misja” for painting and then the University for directing-acting.</p>
                                                             </div>
                                                             <div class="resume-row">
                                                                 <h6 class="resume-type">Experience</h6>
-                                                                <p class="resume-text"> In 2008 at the age of 17 he
-                                                                    competed for the first time on a TV show “ TI VLEN”.
-                                                                    He participated as an imitator where he was
-                                                                    evaluated by a jury that noticed his talent on
-                                                                    imitation and comedy , he continued this competition
-                                                                    until the semi-finals. A few years later at the age
-                                                                    of 19 he participates in another show “ GOT TALENT”,
-                                                                    again as an imitator but this time his strongest
-                                                                    point was beat box which accompanied during the
-                                                                    imitation until the finals. The same year he is
-                                                                    selected in one of the best comedy shows
-                                                                    “PORTOKALLI” with main character Sali Berisha. He
-                                                                    worked there for an entire season. </p>
+                                                                <p class="resume-text"> In 2008 at the age of 17 he competed for the first time on a TV show “ TI VLEN”. He participated as an imitator where he was evaluated by a jury that noticed his talent on imitation and comedy , he continued this competition until  the semi-finals. A few years later at the age of 19 he participates in another show “ GOT TALENT”, again as an imitator but this time his strongest point was beat box which accompanied during the imitation until the finals. The same year he is selected in one of the best comedy shows “PORTOKALLI” with main character Sali Berisha. He worked there for an entire season.  </p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -135,22 +104,8 @@
                                                     <div class="resume-content">
                                                         <div class="resume-inner">
                                                             <div class="resume-row">
-                                                                <p class="resume-text"> Meanwhile his greatest dream was
-                                                                    to make his first film, which came as a comedy
-                                                                    “Çimi” where the premiere was held on August 9,
-                                                                    2013. Two years later on October 22, 2015 Drilon
-                                                                    Hoxha comes with the first action film in Albania “
-                                                                    Drejt Fundit “ as a director and the starring actor
-                                                                    at the same time. 2015 marks the opening of his film
-                                                                    production “ D.H production”. In 2018 another
-                                                                    production by “ D.H production”
-                                                                    "Dashuria S'mjafton" directed and written by Drilon
-                                                                    Hoxha and photographed by Dashnor Asllani, brought
-                                                                    as an action film intertwined with drama and
-                                                                    intrigue. "Shkembimi" is the latest film brought by
-                                                                    D.H Production directed and written by Drilon Hoxha,
-                                                                    which combines comedy, action and drama. A movie not
-                                                                    to be missed. </p>
+                                                                <p class="resume-text"> Meanwhile his greatest dream was to make his first film, which came as a comedy “Çimi” where the premiere was held on August 9, 2013. Two years later on October 22, 2015 Drilon Hoxha comes with the first action film in Albania “ Drejt Fundit “ as a director and the starring actor at the same time. 2015 marks the opening of his film production “ D.H production”. In 2018 another production by “ D.H production”
+                                                                    "Dashuria S'mjafton" directed and written by Drilon Hoxha and photographed by Dashnor Asllani, brought as an action film intertwined with drama and intrigue. "Shkembimi" is the latest film brought by D.H Production directed and written by Drilon Hoxha,  which combines comedy, action and drama.  A movie not to be missed. </p>
 
                                                             </div>
 
@@ -186,36 +141,27 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="project-row">
-                                                    <a class="active">
+                                                    <a class="active" href="{{route('register')}}" >
                                                         <span class="project-number">01</span>
                                                         <h2 class="project-title">Shkembimi</h2>
                                                         <div class="project-category">Book Now</div>
                                                     </a>
                                                 </div>
                                                 <div class="project-row">
-                                                    <a target="_blank"
-                                                       href="https://www.youtube.com/watch?v=fabFTlOQD_k">
+                                                    <a target="_blank" href="https://www.youtube.com/watch?v=fabFTlOQD_k">
                                                         <span class="project-number">02</span>
                                                         <h2 class="project-title">Dashuria S'Mjafton</h2>
                                                         <div class="project-category">See Now</div>
                                                     </a>
                                                 </div>
                                                 <div class="project-row">
-                                                    <a target="_blank"
-                                                       href="https://www.youtube.com/watch?v=gx6WqN1eOOQ">
+                                                    <a target="_blank" href="https://www.youtube.com/watch?v=gx6WqN1eOOQ">
                                                         <span class="project-number">03</span>
                                                         <h2 class="project-title">Drejt Fundit</h2>
                                                         <div class="project-category">See Now</div>
                                                     </a>
                                                 </div>
-                                                <div class="project-row">
-                                                    <a target="_blank"
-                                                       href="https://www.youtube.com/watch?v=OqR-ppd0Yok">
-                                                        <span class="project-number">04</span>
-                                                        <h2 class="project-title">Çimi </h2>
-                                                        <div class="project-category">See Now</div>
-                                                    </a>
-                                                </div>
+
 
                                             </div>
                                         </div>
@@ -230,84 +176,44 @@
         <div data-anchor="page5" class="pp-scrollable section section-6">
             <div class="scroll-wrap">
                 <div class="scrollable-content">
-                    <div class="vertical-title text-white d-none d-lg-block"><span>partners</span></div>
+                    <div class="vertical-title text-white d-none d-lg-block"><span>gallery</span></div>
                     <div class="vertical-centred">
                         <div class="boxed boxed-inner">
                             <div class="boxed">
-                                <div class="container">
-                                    <div class="intro">
-                                        <h2 class="title text-white"><span class="text-primary">Trusted</span> from
-                                            Clients</h2>
-                                        <div class="row row-partners">
-                                            <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                <div class="partner-inner"><img alt=""
-                                                                                src="/assets/images/partners/artisti.png">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                <div class="partner-inner"><img alt=""
-                                                                                src="/assets/images/partners/berisha.png">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                <div class="partner-inner"><img alt=""
-                                                                                src="/assets/images/partners/dca.png">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                <div class="partner-inner"><img alt=""
-                                                                                src="/assets/images/partners/erzeni.png">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                <div class="partner-inner"><img alt=""
-                                                                                src="/assets/images/partners/eurosig.png">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                <div class="partner-inner"><img alt=""
-                                                                                src="/assets/images/partners/klaron.png">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                <div class="partner-inner"><img alt=""
-                                                                                src="/assets/images/partners/mariabonita.png">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                <div class="partner-inner"><img alt=""
-                                                                                src="/assets/images/partners/modacity.png">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                <div class="partner-inner"><img alt=""
-                                                                                src="/assets/images/partners/palace.png">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                <div class="partner-inner"><img alt=""
-                                                                                src="/assets/images/partners/royal.png">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                <div class="partner-inner"><img alt=""
-                                                                                src="/assets/images/partners/teoren.png">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                <div class="partner-inner"><img alt=""
-                                                                                src="/assets/images/partners/xhangolli.png">
-                                                </div>
-                                            </div>
+
+
+
+                                <div class="photo-gallery">
+                                    <div class="container">
+
+                                        <div class="row photos">
+                                            <div class="col-sm-6 col-md-4 col-lg-4 item"><a href="../assets/images/drilon/gallery1.jpg" data-lightbox="photos"><img class="img-fluid" src="../assets/images/drilon/gallery1.jpg"></a></div>
+                                            <div class="col-sm-6 col-md-4 col-lg-4 item"><a href="../assets/images/drilon/gallery2.jpg" data-lightbox="photos"><img class="img-fluid" src="../assets/images/drilon/gallery2.jpg"></a></div>
+                                            <div class="col-sm-6 col-md-4 col-lg-4 item"><a href="../assets/images/drilon/gallery3.jpg" data-lightbox="photos"><img class="img-fluid" src="../assets/images/drilon/gallery3.jpg"></a></div>
+                                            <div class="col-sm-6 col-md-4 col-lg-4 item"><a href="../assets/images/drilon/gallery4.jpg" data-lightbox="photos"><img class="img-fluid" src="../assets/images/drilon/gallery4.jpg"></a></div>
+                                            <div class="col-sm-6 col-md-4 col-lg-4 item"><a href="../assets/images/drilon/gallery5.jpg" data-lightbox="photos"><img class="img-fluid" src="../assets/images/drilon/gallery5.jpg"></a></div>
+                                            <div class="col-sm-6 col-md-4 col-lg-4 item"><a href="../assets/images/drilon/about.png" data-lightbox="photos"><img class="img-fluid" src="../assets/images/drilon/about.png"></a></div>
+
+
+
+
+
+
+
+
                                         </div>
                                     </div>
                                 </div>
+                                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                                <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+                                <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
         <div data-anchor="page6" class="pp-scrollable section section-8">
             <div class="scroll-wrap">
@@ -344,7 +250,7 @@
                                                 <section class="contact-address">
                                                     <h3><a class="mail" href="mailto:contact@drilonhoxha.com">
                                                             contact@drilonhoxha.com</a></h3>
-                                                    <h3><span class="phone">+ 355 69 510 55 99</span></h3>
+
                                                 </section>
                                             </div>
                                             <div class="col-md-6">

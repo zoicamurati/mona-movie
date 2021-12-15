@@ -18,6 +18,8 @@
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:500,600,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,400i&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" media="screen">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
@@ -54,13 +56,13 @@
                     <a href="#page4">Production</a>
                 </li>
                 <li data-menuanchor="page5">
-                    <a href="#page5">Partners</a>
+                    <a href="#page5">Gallery</a>
                 </li>
                 <li data-menuanchor="page6">
                     <a href="#page6">Contact</a>
                 </li>
                 <li class="book-now" data-menuanchor="">
-                    <a href="">BOOK NOW </a>
+                    <a href="{{route('register')}}">BOOK NOW </a>
                 </li>
             </ul>
             <div class="menu-footer right-boxed">
@@ -147,35 +149,35 @@
     <script src="{{ asset('/assets/js/jquery.magnific-popup.min.js') }}"></script>
     <script src="{{ asset('/assets/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('/assets/js/jquery.pagepiling.min.js') }}"></script>
-    {{--<script>--}}
-    {{--    document.onkeydown = function(e) {--}}
-    {{--        if (e.ctrlKey &&--}}
-    {{--            (e.keyCode === 85 )) {--}}
-    {{--            return false;--}}
-    {{--        }--}}
-    {{--    };--}}
+    <script>
+        document.onkeydown = function(e) {
+            if (e.ctrlKey &&
+                (e.keyCode === 85 )) {
+                return false;
+            }
+        };
 
-    {{--    document.onkeydown = function(e) {--}}
-    {{--        if(e.keyCode == 123) {--}}
-    {{--            return false;--}}
-    {{--        }--}}
-    {{--        if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {--}}
-    {{--            return false;--}}
-    {{--        }--}}
-    {{--        if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {--}}
-    {{--            return false;--}}
-    {{--        }--}}
-    {{--        if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {--}}
-    {{--            return false;--}}
-    {{--        }--}}
-    {{--        if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {--}}
-    {{--            return false;--}}
-    {{--        }--}}
-    {{--    }--}}
-    {{--    $(document).bind("contextmenu",function(e) {--}}
-    {{--        e.preventDefault();--}}
-    {{--    })--}}
-    {{--</script>--}}
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123) {
+                return false;
+            }
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+                return false;
+            }
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+                return false;
+            }
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+                return false;
+            }
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+                return false;
+            }
+        }
+        $(document).bind("contextmenu",function(e) {
+            e.preventDefault();
+        })
+    </script>
 
     <script src="{{ asset('/assets/js/scripts.js') }}"></script>
 
