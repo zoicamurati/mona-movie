@@ -149,7 +149,7 @@
     <script src="{{ asset('/assets/js/jquery.magnific-popup.min.js') }}"></script>
     <script src="{{ asset('/assets/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('/assets/js/jquery.pagepiling.min.js') }}"></script>
-    <script>
+  {{--  <script>
         document.onkeydown = function(e) {
             if (e.ctrlKey &&
                 (e.keyCode === 85 )) {
@@ -177,7 +177,7 @@
         $(document).bind("contextmenu",function(e) {
             e.preventDefault();
         })
-    </script>
+    </script>--}}
 
     <script src="{{ asset('/assets/js/scripts.js') }}"></script>
 
