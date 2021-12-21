@@ -17,6 +17,7 @@ Route::view('/', 'index')->name('home');
 
 //Watch movie
 Route::view('/shiko-filmin', 'watch_movie')->name('movie')->middleware(['auth','check.date']);
+Route::view('/accept-agreement', 'accept_agreement')->name('accept_agreement')->middleware(['auth','check.date']);
 
 Route::group(['middleware' => ['auth','admin']], function () {
     //Dashboard
@@ -37,6 +38,5 @@ Route::group(['prefix' => 'paypal'], function () {
 Route::post('/contact', [\App\Http\Controllers\UserController::class, 'contact'])->name('contact');
 
 Route::view('/test', 'test')->name('test');
-Route::get('get-video', [\App\Http\Controllers\VideoController::class, 'getVideo'])->name('getVideo');
 
 require __DIR__ . '/auth.php';

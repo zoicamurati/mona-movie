@@ -18,7 +18,7 @@ class DateMiddleware
     public function handle(Request $request, Closure $next)
     {
         $date = Carbon::now();
-       // $date = Carbon::parse('2021-12-25 00:00:00');
+        $date = Carbon::parse('2021-12-25 00:00:00');
 
         if ($date->betweenIncluded('2021-12-25 00:00:00', '2021-12-25 23:59:59')) {
             return $next($request);
