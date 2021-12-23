@@ -38,5 +38,6 @@ Route::group(['prefix' => 'paypal'], function () {
 Route::post('/contact', [\App\Http\Controllers\UserController::class, 'contact'])->name('contact');
 
 Route::view('/test', 'test')->name('test');
+Route::view('/test2', 'test2')->name('test');
 
 require __DIR__ . '/auth.php';

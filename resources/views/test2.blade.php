@@ -39,83 +39,68 @@
             </div>
 
 
-            <video width="100%" id="videoElementID" controls="controls" controlsList="nodownload">
+            <div id="player"></div>
 
-            </video>
         </div>
 
     </div>
 </div>
-
-
-<script type='text/javascript'>
-    window.onload = function () {
-        video = document.querySelector('video');
-        if (video) {
-            video.setAttribute("controlsList", "nodownload");
-        }
-    };
-
-    $(document).ready(function () {
-
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'Orbit2.mp4', true);
-        xhr.responseType = 'blob';
-        xhr.onload = function (e) {
-            var blob = this.response;
-            var vid = document.getElementsByTagName('video')[0];
-            vid.src = URL.createObjectURL(blob);
-            vid.load();
-            vid.onloadeddata = function () {
-                vid.play();
+    <script src="{{ asset('/js/jwplayer.js') }}"></script>
+    <script type='text/javascript'>
+        window.onload = function () {
+            video = document.querySelector('video');
+            if (video) {
+                video.setAttribute("controlsList", "nodownload");
             }
         };
-        xhr.send();
-    });
+        const playerInstance = jwplayer('player').setup({
+            "playlist": "https://cdn.jwplayer.com/v2/playlists/YWwr2dYj?format=mrss"
+        });
 
 
-    var fs = document.getElementById('btnFS');
+
+        var fs = document.getElementById('btnFS');
 
 
-    fs.addEventListener('click', goFullScreen);
+        fs.addEventListener('click', goFullScreen);
 
-    function goFullScreen() {
-        var fullscreenElement = document.fullscreenElement || document.mozFullScreenElement ||
-            document.webkitFullscreenElement || document.msFullscreenElement;
-        if (fullscreenElement) {
-            exitFullscreen();
-        } else {
-            launchIntoFullscreen(document.getElementById('container'));
+        function goFullScreen() {
+            var fullscreenElement = document.fullscreenElement || document.mozFullScreenElement ||
+                document.webkitFullscreenElement || document.msFullscreenElement;
+            if (fullscreenElement) {
+                exitFullscreen();
+            } else {
+                launchIntoFullscreen(document.getElementById('container'));
+            }
+
         }
 
-    }
-
-    // From https://davidwalsh.name/fullscreen
-    // Find the right method, call on correct element
-    function launchIntoFullscreen(element) {
-        if (element.requestFullscreen) {
-            element.requestFullscreen();
-        } else if (element.mozRequestFullScreen) {
-            element.mozRequestFullScreen();
-        } else if (element.webkitRequestFullscreen) {
-            element.webkitRequestFullscreen();
-        } else if (element.msRequestFullscreen) {
-            element.msRequestFullscreen();
+        // From https://davidwalsh.name/fullscreen
+        // Find the right method, call on correct element
+        function launchIntoFullscreen(element) {
+            if (element.requestFullscreen) {
+                element.requestFullscreen();
+            } else if (element.mozRequestFullScreen) {
+                element.mozRequestFullScreen();
+            } else if (element.webkitRequestFullscreen) {
+                element.webkitRequestFullscreen();
+            } else if (element.msRequestFullscreen) {
+                element.msRequestFullscreen();
+            }
         }
-    }
 
-    // Whack fullscreen
-    function exitFullscreen() {
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        } else if (document.mozCancelFullScreen) {
-            document.mozCancelFullScreen();
-        } else if (document.webkitExitFullscreen) {
-            document.webkitExitFullscreen();
+        // Whack fullscreen
+        function exitFullscreen() {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            }
         }
-    }
 
-</script>
+    </script>
 <script src="{{ asset('/assets/js/jquery.min.js') }}"></script>
 <script src="{{ asset('/assets/js/wow.min.js') }}"></script>
 <script src="{{ asset('/assets/js/smoothscroll.js') }}"></script>
@@ -124,6 +109,7 @@
 <script src="{{ asset('/assets/js/jquery.magnific-popup.min.js') }}"></script>
 <script src="{{ asset('/assets/js/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('/assets/js/jquery.pagepiling.min.js') }}"></script>
+
 {{--  <script>
       document.onkeydown = function(e) {
           if (e.ctrlKey &&
@@ -160,3 +146,4 @@
 </div>
 </body>
 </html>
+
