@@ -24,6 +24,10 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
+    <style>
+        .jw-icon .jw-icon-inline .jw-button-color .jw-reset .jw-icon-fullscreen{
+            display: none !important;
+        }</style>
 </head>
 
 <div id="container">
@@ -47,6 +51,9 @@
 </div>
     <script src="{{ asset('/js/jwplayer.js') }}"></script>
     <script type='text/javascript'>
+
+
+
         window.onload = function () {
             video = document.querySelector('video');
             if (video) {
@@ -55,7 +62,9 @@
         };
         const playerInstance = jwplayer('player').setup({
             "playlist": "https://cdn.jwplayer.com/v2/playlists/YWwr2dYj?format=mrss"
-        });
+        })
+        jwplayer().setConfig({ allowFullscreen: false })
+
 
 
 
@@ -99,6 +108,7 @@
                 document.webkitExitFullscreen();
             }
         }
+
 
     </script>
 <script src="{{ asset('/assets/js/jquery.min.js') }}"></script>

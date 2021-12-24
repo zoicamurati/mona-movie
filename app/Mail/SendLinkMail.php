@@ -35,7 +35,7 @@ class SendLinkMail extends Mailable implements ShouldQueue
                 'actionText' => "Shiko filmin",
                 'salutation' =>  "Shikim te kendeshem!",
             ]);
-1
-        ;
+
+
     }
 }

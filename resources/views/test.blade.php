@@ -57,20 +57,27 @@
     };
 
     $(document).ready(function () {
+        var URL = window.URL || window.webkitURL;
 
         var xhr = new XMLHttpRequest();
         xhr.open('GET', 'Orbit2.mp4', true);
-        xhr.responseType = 'blob';
-        xhr.onload = function (e) {
-            var blob = this.response;
-            var vid = document.getElementsByTagName('video')[0];
-            vid.src = URL.createObjectURL(blob);
-            vid.load();
-            vid.onloadeddata = function () {
-                vid.play();
+        xhr.responseType = 'blob'; //important
+        xhr.onload = function(e) {
+            if (this.status == 200) {
+                console.log("loaded");
+                var blob = this.response;
+                var video = document.getElementsByTagName('video')[0];
+                console.log(video)
+                video.oncanplaythrough = function() {
+                    console.log("Can play through video without stopping");
+                    URL.revokeObjectURL(this.src);
+                };
+                video.src = URL.createObjectURL(blob);
+                video.load();
             }
         };
         xhr.send();
+
     });
 
 

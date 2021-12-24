@@ -60,6 +60,9 @@
 @import url('jquery.pagepiling.css');
 @import url('owl.carousel.css');
 
+.jw-icon .jw-icon-inline .jw-button-color .jw-reset .jw-icon-fullscreen{
+    display: none !important;
+}
 .video-block{
 
     position: relative;
