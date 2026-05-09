@@ -38,56 +38,6 @@
 
     <div class="click-capture"></div>
 
-    <!-- Sidebar Menu-->
-    @if(!Route::is('movie')  && !Route::is('createTransaction') )
-        <div class="menu">
-            <span class="close-menu icon-cross2 right-boxed"></span>
-            <ul class="menu-list right-boxed">
-                <li data-menuanchor="page1">
-                    <a href="#page1">Home</a>
-                </li>
-                <li data-menuanchor="page2">
-                    <a href="#page2">Shkembimi</a>
-                </li>
-                <li data-menuanchor="page3">
-                    <a href="#page3">About</a>
-                </li>
-                <li data-menuanchor="page4">
-                    <a href="#page4">Production</a>
-                </li>
-                <li data-menuanchor="page5">
-                    <a href="#page5">Gallery</a>
-                </li>
-                <li data-menuanchor="page6">
-                    <a href="#page6">Contact</a>
-                </li>
-                <li class="book-now" data-menuanchor="">
-                    <a href="{{route('register')}}">BOOK NOW </a>
-                </li>
-            </ul>
-            <div class="menu-footer right-boxed">
-                <div class="social-list">
-                    <div class="social-icons">
-                        <a target="_blank" href="https://www.youtube.com/c/DrilonHoxhaOfficial">
-                            <div class="social-icon"><img alt="" class="img-fluid" src="images/drilon/ytwhite.png">
-                            </div>
-                        </a>
-                        <a target="_blank" href="https://www.facebook.com/Official.Drilon.Hoxha">
-                            <div class="social-icon"><img alt="" class="img-fluid" src="images/drilon/fbwhite.png">
-                            </div>
-                        </a>
-                        <a target="_blank" href="https://www.instagram.com/drilonhoxha/">
-                            <div class="social-icon"><img alt="" class="img-fluid" src="images/drilon/igwhite.png">
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="copy"> ©2021<a href="https://digitalmoon.al/" target="_blank"> Digital Moon Agency </a> All
-                    Rights Reserved
-                </div>
-            </div>
-        </div>
-    @endif
 <!-- Navbar -->
 
     <header class="navbar navbar-fullpage boxed">
@@ -103,19 +53,20 @@
 
             </a>
         @endif
-        @if(!Route::is('movie')  && !Route::is('createTransaction') )
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse"
-                    aria-expanded="false">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        @endif
 
-        @if((Route::is('movie')  ||  Route::is('createTransaction'))  && Auth::check() && Auth::user()->role ==1 )
+        @if((Route::is('movie') || Route::is('accept_agreement') || Route::is('createTransaction')) && Auth::check() && Auth::user()->role == 1)
             <div class="navbar-toggle book-btn contact-item">
                 <a href="{{route('panel')}}" class="text-white">Shko ne Panel</a>
             </div>
+        @endif
+
+        @if((Route::is('movie') || Route::is('accept_agreement')) && Auth::check())
+            <form method="POST" action="{{ route('logout') }}" style="display:inline;">
+                @csrf
+                <button type="submit" class="navbar-toggle book-btn contact-item" style="background:none;border:none;cursor:pointer;">
+                    <span class="text-white">Dil</span>
+                </button>
+            </form>
         @endif
 
         <div class="contacts d-none d-md-block">

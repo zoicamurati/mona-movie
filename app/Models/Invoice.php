@@ -18,6 +18,7 @@ class Invoice extends Model
         'user_id',
         'title',
         'total',
-        'status'
+        'status',
+        'paypal_order_id',
     ];
 }

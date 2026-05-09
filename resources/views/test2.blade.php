@@ -1,159 +1,171 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ asset('panel/css/bootstrap.min.css') }}">
 
-    <!-- Favicons -->
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}"/>
+    <link rel="stylesheet" href="{{ asset('panel/css/typography.css') }}">
 
-    <link rel="shortcut icon" href="">
-    <link rel="shortcut icon" href="{{ asset('assets/images/drilon/favicon.png') }}">
-    <link rel="icon" type="image/png" href="{{ asset('assets/images/drilon/favicon.png') }}" sizes="32x32"/>
-    <link rel="icon" type="image/png" href="{{ asset('assets/images/drilon/favicon.png') }}" sizes="200x200"/>
+    <title>Drilon Hoxha - Movie dashboard</title>
 
-    <title>Drilon Hoxha Production</title>
-
-    <!-- Styles -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:500,600,700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,400i&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
 
-    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" media="screen">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
-    <style>
-        .jw-icon .jw-icon-inline .jw-button-color .jw-reset .jw-icon-fullscreen{
-            display: none !important;
-        }</style>
-</head>
+    <link href="{{ asset('panel/css/style.css') }}" rel="stylesheet" media="screen">
 
+    <script src="{{ asset('/js/jwplayer.js') }}"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body style="overflow: hidden;">
 <div id="container">
+    <div id="myModal" class="modal fade" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Termat & Kushtet e Perdorimit</h3>
+                    {{--<button type="button" class="close" data-dismiss="modal">&times;</button>--}}
+                </div>
+                <div class="modal-body text-center">
+                    <div>
+                        <div><h5>Nëpermjet pranimit të kushteve dhe termave të pronës intelektuale ju dakortësoheni se
+                                për secilën
+                                nga pikat e mëposhtme do të aplikohen sanksionet e ligjeve ne fuqi: </h5>
+                            <ul>
+                                <li><h6>Shpërndarja e cdo sekuence ose e filmit të plotë pa autorizim nga pronari
+                                        legjitim</h6></li>
+                                <li><h6>Thyerja e sistemeve të sigurisë me qëllim për të shkarkuar filmin në mënyrë te
+                                        jashtëligjshme</h6></li>
+                                <li><h6>Rregjistrimi i filmit gjatë transmetimit me "Screen-Recording Software" ose me
+                                        pajisje video
+                                        rregjistruese kamera, smartphone etj...</h6></li>
+                                <li><h6>Cdo akt i cili bie ne kundërshtim me termat dhe kushtet e pronës intelektuale (
+                                        shpërndarja
+                                        e cdo sekuence ose e filmit të plotë,shkarkimi i tij etj..) do të jetë
+                                        përgjegjësi e
+                                        cila bie mbi zotëruesin e kësaj llogarie </h6></li>
+                            </ul>
+
+                            <h5>Emri dhe Mbiemri i zotëruesit të llogarisë do të shfaqen mbi film gjatë gjithë
+                                transmetimit të tij
+                                me qëllim për të identifikuar shkelësin në mënyrë të drejtpërdrejtë. </h5>
+
+
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn bg-primary" data-dismiss="modal"><span
+                                    class="glyphicon glyphicon-success"></span> Pranoj kushtet e perdorimit
+                            </button>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="video-block">
 
         <div class="overlay">
-            <h1>{{Auth::user()->real_name}}</h1>
+            <h1>{{Auth::user()->email}}</h1>
         </div>
 
-        <div class="main-video">
-            <div class="btn-fs" id="btnFS">
-                Fullscreen
-            </div>
-
-
-            <div id="player"></div>
-
-        </div>
-
+        <div id="player"></div>
     </div>
 </div>
-    <script src="{{ asset('/js/jwplayer.js') }}"></script>
-    <script type='text/javascript'>
 
-
-
-        window.onload = function () {
-            video = document.querySelector('video');
-            if (video) {
-                video.setAttribute("controlsList", "nodownload");
-            }
-        };
-        const playerInstance = jwplayer('player').setup({
-            "playlist": "https://cdn.jwplayer.com/v2/playlists/YWwr2dYj?format=mrss"
-        })
-        jwplayer().setConfig({ allowFullscreen: false })
-
-
-
-
-        var fs = document.getElementById('btnFS');
-
-
-        fs.addEventListener('click', goFullScreen);
-
-        function goFullScreen() {
-            var fullscreenElement = document.fullscreenElement || document.mozFullScreenElement ||
-                document.webkitFullscreenElement || document.msFullscreenElement;
-            if (fullscreenElement) {
-                exitFullscreen();
-            } else {
-                launchIntoFullscreen(document.getElementById('container'));
-            }
-
-        }
-
-        // From https://davidwalsh.name/fullscreen
-        // Find the right method, call on correct element
-        function launchIntoFullscreen(element) {
-            if (element.requestFullscreen) {
-                element.requestFullscreen();
-            } else if (element.mozRequestFullScreen) {
-                element.mozRequestFullScreen();
-            } else if (element.webkitRequestFullscreen) {
-                element.webkitRequestFullscreen();
-            } else if (element.msRequestFullscreen) {
-                element.msRequestFullscreen();
-            }
-        }
-
-        // Whack fullscreen
-        function exitFullscreen() {
-            if (document.exitFullscreen) {
-                document.exitFullscreen();
-            } else if (document.mozCancelFullScreen) {
-                document.mozCancelFullScreen();
-            } else if (document.webkitExitFullscreen) {
-                document.webkitExitFullscreen();
-            }
-        }
-
-
-    </script>
-<script src="{{ asset('/assets/js/jquery.min.js') }}"></script>
-<script src="{{ asset('/assets/js/wow.min.js') }}"></script>
-<script src="{{ asset('/assets/js/smoothscroll.js') }}"></script>
-<script src="{{ asset('/assets/js/animsition.js') }}"></script>
-<script src="{{ asset('/assets/js/jquery.validate.min.js') }}"></script>
-<script src="{{ asset('/assets/js/jquery.magnific-popup.min.js') }}"></script>
-<script src="{{ asset('/assets/js/owl.carousel.min.js') }}"></script>
-<script src="{{ asset('/assets/js/jquery.pagepiling.min.js') }}"></script>
-
-{{--  <script>
-      document.onkeydown = function(e) {
-          if (e.ctrlKey &&
-              (e.keyCode === 85 )) {
-              return false;
-          }
-      };
-
-      document.onkeydown = function(e) {
-          if(e.keyCode == 123) {
-              return false;
-          }
-          if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
-              return false;
-          }
-          if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
-              return false;
-          }
-          if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
-              return false;
-          }
-          if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
-              return false;
-          }
-      }
-      $(document).bind("contextmenu",function(e) {
-          e.preventDefault();
-      })
-  </script>--}}
-
-<script src="{{ asset('/assets/js/scripts.js') }}"></script>
-
-
-</div>
 </body>
+
+
+
+<script src="{{ asset('/js/jwplayer.js') }}"></script>
+<script src="https://cdn.jwplayer.com/libraries/bTQA57Q3.js"></script>
+
+<script src="{{ asset('/js/jwplayer.js') }}"></script>
+<script src="https://cdn.jwplayer.com/libraries/bTQA57Q3.js"></script>
+
+<script type='text/javascript'>
+
+    $(document).ready(function () {
+        $("#myModal").modal('show');
+    });
+
+    window.onload = function () {
+        video = document.querySelector('video');
+        if (video) {
+            video.setAttribute("controlsList", "nodownload");
+        }
+    };
+    const playerInstance = jwplayer('player').setup({
+        "playlist": "https://cdn.jwplayer.com/v2/playlists/uZAXaACx?format=mrss"
+    })
+    jwplayer().setConfig({ allowFullscreen: false })
+
+
+    var fs = document.getElementById('btnFS');
+
+    fs.addEventListener('click', goFullScreen);
+
+    window.onload = function () {
+        video = document.querySelector('video');
+        if (video) {
+            video.setAttribute("controlsList", "nodownload");
+        }
+    };
+
+
+
+</script>
+<style>
+    .jw-icon .jw-icon-inline .jw-button-color .jw-reset .jw-icon-fullscreen {
+        display: none !important;
+    }
+</style>
+
+<script>
+
+    $('#myModal').modal({backdrop: 'static', keyboard: false})
+
+    $('#myModal').modal({backdrop: 'static', keyboard: false})
+
+
+    document.onkeydown = function (e) {
+        if (e.ctrlKey &&
+            (e.keyCode === 85)) {
+            return false;
+        }
+    };
+
+    document.onkeydown = function (e) {
+        if (e.keyCode == 123) {
+            return false;
+        }
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+            return false;
+        }
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+            return false;
+        }
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+            return false;
+        }
+        if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+            return false;
+        }
+    }
+    $(document).bind("contextmenu", function (e) {
+        e.preventDefault();
+    })
+</script>
+
 </html>
+
 
