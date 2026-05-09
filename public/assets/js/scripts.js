@@ -14,11 +14,11 @@
 
 		$('.loader').fadeOut(1000);
 		var wow = new WOW({
-		    offset: 150,          
+		    offset: 150,
 		    mobile: false
 		  }
 		);
-		
+
 		wow.init();
 	});
 
@@ -111,7 +111,7 @@
 		        },
 		        720:{
 		            items:1,
-		            
+
 		        },
 		        1280:{
 		            items:1
@@ -130,7 +130,7 @@
 
 
 	/*-------------------------------------------------------------------------------
-	  Full screen sections 
+	  Full screen sections
 	-------------------------------------------------------------------------------*/
 
 
@@ -154,7 +154,7 @@
 	    	$('.navbar').removeClass('navbar-fixed');
 	     }
     });
-	 
+
     }
 
     navbar();
@@ -166,7 +166,7 @@
 		    anchors: ['page1', 'page2', 'page3', 'page4', 'page5', 'page6', 'page7', 'page8'],
 		    afterLoad: function(anchorLink, index){
 	           navbarFullpage();
-	            
+
   			}
 		});
 
@@ -199,7 +199,7 @@
 		$('.pp-nav-down').on('click', function(){
 			$.fn.pagepiling.moveSectionDown();
 		});
- 
+
 
 
 
@@ -251,8 +251,8 @@
 		});
 	}
 
-	
-	
+
+
 
 
 })(jQuery);
