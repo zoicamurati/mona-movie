@@ -63,6 +63,22 @@
 .jw-icon .jw-icon-inline .jw-button-color .jw-reset .jw-icon-fullscreen{
     display: none !important;
 }
+.remove-full{
+    position: absolute;
+    color: #FFF;
+    text-align: center;
+    font-size: 20px;
+    background-color: rgb(0 0 0);
+    width: 64px;
+    padding: 10px 0;
+    z-index: 2147483647;
+    bottom: -88px;
+    right: 50px;
+    margin: 0;
+    height: 54px;
+}
+
+
 .video-block{
 
     position: relative;

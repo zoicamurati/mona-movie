@@ -16,9 +16,13 @@
         <div class="errors">
         <x-auth-validation-errors :errors="$errors"/>
         </div>
+
+        @if(session('code') === 'danger')
+            <div style="color:red; margin-bottom: 10px;">{{ session('message') }}</div>
+        @endif
         <div class="form">
 
-        <form method="POST" action="{{ route('processTransaction') }}">
+        <form method="POST" action="{{ route('processTransaction') }}" id="payment-form">
         @csrf
 
         <!-- Name -->
@@ -62,8 +66,8 @@
                     {{ __('Already registered?') }}
                 </a>
 
-                <x-button class=" book-btn">
-                    {{ __('Proceed With Payment') }}
+                <x-button class="book-btn">
+                    {{ __('Pay with PayPal') }}
                 </x-button>
             </div>
         </form>

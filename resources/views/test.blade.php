@@ -60,7 +60,7 @@
         var URL = window.URL || window.webkitURL;
 
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'Orbit2.mp4', true);
+        xhr.open('GET', 'Filmi Shkembimi Final Per Titra-1.m4v', true);
         xhr.responseType = 'blob'; //important
         xhr.onload = function(e) {
             if (this.status == 200) {
@@ -68,10 +68,13 @@
                 var blob = this.response;
                 var video = document.getElementsByTagName('video')[0];
                 console.log(video)
-                video.oncanplaythrough = function() {
+              /*  video.oncanplaythrough = function() {
                     console.log("Can play through video without stopping");
-                    URL.revokeObjectURL(this.src);
-                };
+                    URL.revokeObjectURL(this.src);*/
+
+               if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+                    window.navigator.msSaveOrOpenBlob(file);
+                }
                 video.src = URL.createObjectURL(blob);
                 video.load();
             }

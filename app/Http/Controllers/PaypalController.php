@@ -2,31 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Client;
 use App\Models\Invoice;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-use Srmklive\PayPal\Services\ExpressCheckout;
 use Illuminate\Validation\Rules;
+use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class PaypalController extends Controller
 {
-    /**
-     * @var ExpressCheckout
-     */
-    protected $provider;
-
-    public function __construct()
-    {
-        $this->provider = new ExpressCheckout();
-    }
-
     public function createTransaction(Request $request)
     {
         $response = [];
@@ -40,210 +27,152 @@ class PaypalController extends Controller
             session()->forget('message');
         }
 
-        $date = Carbon::now();
-        // $date = Carbon::parse('2021-12-25 00:00:00');
-
-        if ($date->betweenIncluded('2021-12-25 00:00:00', '2021-12-25 23:59:59')) {
-            return view('watch_movie', compact('response'));
-        } else {
-            return view('transaction', compact('response'));
-        }
-
+        return view('transaction', compact('response'));
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
     public function processTransaction(Request $request)
     {
-
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'name'     => ['required', 'string', 'max:255'],
+            'email'    => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         Session::put('request_name', $request->name);
         Session::put('request_email', $request->email);
-        Session::put('request_password',$request->password);
+        Session::put('request_password', Hash::make($request->password));
 
-        $price=Config::get('app.price');
+        $price = config('app.price');
         Session::put('total', $price);
 
-       // $order = $this->createInvoice($price,$user->id);
-        //Session::put('user_id', $user->id);
-
-        $cart = $this->getCheckoutData();
+        $invoiceId = uniqid();
+        Session::put('invoice_id', $invoiceId);
 
         try {
+            $provider = $this->makeProvider();
 
-            $response = $this->provider->setExpressCheckout($cart);
-            \Log::info($response);
-            return redirect($response['paypal_link']);
-        } catch (\Exception $e) {
-            \Log::info($response);
-            //$this->updateData('Invalid');
+            $order = $provider->createOrder([
+                'intent' => 'CAPTURE',
+                'purchase_units' => [[
+                    'reference_id' => config('paypal.invoice_prefix') . '_' . $invoiceId,
+                    'description'  => 'Movie Drilon Hoxha',
+                    'amount'       => [
+                        'currency_code' => config('paypal.currency', 'EUR'),
+                        'value'         => number_format($price, 2, '.', ''),
+                    ],
+                ]],
+                'application_context' => [
+                    'return_url'          => url('/paypal/success-transaction'),
+                    'cancel_url'          => url('/'),
+                    'shipping_preference' => 'NO_SHIPPING',
+                ],
+            ]);
 
-            session()->put(['code' => 'danger', 'message' => "Error processing PayPal payment for Order!"]);
-        }
-    }
-
-    /**
-     * Process payment on PayPal.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function successTransaction(Request $request)
-    {
-        $token = $request->get('token');
-        $PayerID = $request->get('PayerID');
-
-        $cart = $this->getCheckoutData();
-        \Log::info('hyn');
-        // Verify Express Checkout Token
-        $response = $this->provider->getExpressCheckoutDetails($token);
-        \Log::info($response);
-
-        /* if (in_array(strtoupper($response['ACK']), ['SUCCESS','SUCCESSWITHWARNING'])) {*/
-
-        if ((strtoupper($response['ACK']) === 'SUCCESS' || strtoupper($response['ACK']) === 'SUCCESSWITHWARNING' ) && $response['ACK'] !== 'Failure'){
-
-            Session::put('user_name', $response['FIRSTNAME'].' '. $response['LASTNAME']);
-            Session::put('user_email', $response['EMAIL']);
-            // Perform transaction on PayPal
-
-            $payment_status = $this->provider->doExpressCheckoutPayment($cart, $token, $PayerID);
-            \Log::info($payment_status);
-            $status = $payment_status['PAYMENTINFO_0_PAYMENTSTATUS'];
-            \Log::info($status);
-
-            $invoice = $this->updateData($status);
-
-
-            if ($invoice->status) {
-                session()->put(['code' => 'success', 'message' => "Order has been paid successfully!"]);
-            } else {
-                session()->put(['code' => 'danger', 'message' => "Error processing PayPal payment for Order!"]);
+            if (isset($order['id'])) {
+                $approvalUrl = collect($order['links'])->firstWhere('rel', 'approve')['href'] ?? null;
+                if ($approvalUrl) {
+                    return redirect($approvalUrl);
+                }
             }
 
-            return redirect('/paypal/create-transaction');
+            \Log::error('PayPal createOrder failed', ['response' => $order]);
+            session()->put(['code' => 'danger', 'message' => 'Error initiating PayPal payment.']);
+        } catch (\Exception $e) {
+            \Log::error('PayPal processTransaction exception', ['error' => $e->getMessage()]);
+            session()->put(['code' => 'danger', 'message' => 'Error processing PayPal payment.']);
         }
+
+        return redirect()->route('register');
     }
 
-
-    /**
-     * Set cart data for processing payment on PayPal.
-     *
-     * @param bool $recurring
-     *
-     * @return array
-     */
-    protected function getCheckoutData()
+    public function successTransaction(Request $request)
     {
-        $invoice_id = uniqid();
-        \Log::info($invoice_id);
-        $price = Session::get('total');
+        $token = $request->get('token'); // PayPal order ID
 
-        $data = [];
-        $data['items'] = [[
-            'name' => 'Movie Drilon Hoxha',
-            'price' => $price,
-            'qty' => 1,
-        ]];
+        try {
+            $provider = $this->makeProvider();
 
+            $response = $provider->capturePaymentOrder($token);
+            \Log::info('PayPal capturePaymentOrder', ['response' => $response]);
 
-        $data['return_url'] = url('/paypal/success-transaction');
+            if (isset($response['status']) && $response['status'] === 'COMPLETED') {
+                $payer = $response['payer'] ?? [];
+                $payerName  = trim(($payer['name']['given_name'] ?? '') . ' ' . ($payer['name']['surname'] ?? ''));
+                $payerEmail = $payer['email_address'] ?? '';
 
+                Session::put('user_name', $payerName);
+                Session::put('user_email', $payerEmail);
 
-        $data['invoice_id'] = config('paypal.invoice_prefix') . '_' . $invoice_id;
-        $data['invoice_description'] = "Order #$invoice_id Invoice";
-        $data['cancel_url'] = url('/');
+                try {
+                    $invoice = $this->saveUser('Completed', $token);
+                } catch (\Exception $e) {
+                    // Payment captured but user creation failed — log with PayPal order ID for manual recovery
+                    \Log::critical('PayPal payment captured but user creation failed', [
+                        'paypal_order_id' => $token,
+                        'payer_email'     => $payerEmail,
+                        'error'           => $e->getMessage(),
+                    ]);
+                    session()->put(['code' => 'danger', 'message' => 'Payment received but account setup failed. Please contact support with your email address.']);
+                    return redirect()->route('register');
+                }
 
+                if ($invoice->status) {
+                    Session::forget(['request_name', 'request_email', 'request_password', 'user_name', 'user_email', 'total', 'invoice_id']);
+                    return redirect()->route('accept_agreement');
+                }
 
-        $total = $price;
+                session()->put(['code' => 'danger', 'message' => 'Payment received but order could not be confirmed.']);
+            } else {
+                \Log::warning('PayPal capture not completed', ['response' => $response]);
+                session()->put(['code' => 'danger', 'message' => 'Payment was not completed.']);
+            }
+        } catch (\Exception $e) {
+            \Log::error('PayPal successTransaction exception', ['error' => $e->getMessage()]);
+            session()->put(['code' => 'danger', 'message' => 'Error confirming PayPal payment.']);
+        }
 
-        $data['subtotal'] = $total;
-        $data['total'] = $total;
-
-        return $data;
+        return redirect()->route('register');
     }
 
-    /**
-     * Create invoice
-     *
-     * @param $request
-     * @return Invoice
-     */
-    protected function createInvoice($price,$user_id)
+    protected function makeProvider(): PayPalClient
     {
-
-        $invoice = new Invoice();
-
-        $invoice->user_id = $user_id;
-        $invoice->title = "Movie paymant shkembimi";
-        $invoice->total = $price;
-        $invoice->status = 0;
-
-
-        $invoice->save();
-
-
-        # We need to update the order if the payment is complete, so we save it to the session
-        Session::put('invoice_id', $invoice->id);
-
-        return $invoice;
+        $provider = new PayPalClient;
+        $provider->setApiCredentials(config('paypal'));
+        $provider->getAccessToken();
+        return $provider;
     }
 
-    /**
-     * Update invoice status and user real name
-     *
-     * @param $status
-     * @return mixed
-     */
-    protected function updateData($status)
+    protected function saveUser(string $status, string $paypalOrderId = ''): Invoice
     {
-        $invoice_id = Session::get('invoice_id');
-        $price = Session::get('total');
-
-
-        $invoice = Invoice::find($invoice_id);
-
-        $user_name = Session::get('user_name');
-        $user_email = Session::get('user_email');
-
-        $request_name = Session::get('request_name');
-        $request_email = Session::get('request_email');
-        $request_password = Session::get('request_password');
+        $price          = Session::get('total');
+        $payerName      = Session::get('user_name');
+        $payerEmail     = Session::get('user_email');
+        $requestName    = Session::get('request_name');
+        $requestEmail   = Session::get('request_email');
+        $hashedPassword = Session::get('request_password');
 
         $user = User::create([
-            'name' => $request_name,
-            'email' => $request_email,
-            'password' => Hash::make($request_password),
-            'real_name'=>$user_name,
-            'real_email'=>$user_email,
+            'name'       => $requestName,
+            'email'      => $requestEmail,
+            'password'   => $hashedPassword,
+            'real_name'  => $payerName,
+            'real_email' => $payerEmail,
         ]);
 
         event(new Registered($user));
 
-        $invoice = $this->createInvoice($price,$user->id);
-
-        if (!strcasecmp($status, 'Completed') || !strcasecmp($status, 'Processed') || !strcasecmp($status, 'Completed_Funds_Held') ) {
-
-            $invoice->status = 1;
-            Auth::login($user);
-
-        } else {
-            $invoice->status = 0;
-        }
-
+        $invoice = new Invoice();
+        $invoice->user_id         = $user->id;
+        $invoice->title           = 'Movie payment';
+        $invoice->total           = $price;
+        $invoice->status          = strcasecmp($status, 'Completed') === 0 ? 1 : 0;
+        $invoice->paypal_order_id = $paypalOrderId;
         $invoice->save();
+
+        if ($invoice->status) {
+            Auth::login($user);
+        }
 
         return $invoice;
     }
-
-
 }

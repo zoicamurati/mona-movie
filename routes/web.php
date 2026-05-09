@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'index')->name('home');
 
 //Watch movie
-Route::view('/shiko-filmin', 'watch_movie')->name('movie')->middleware(['auth','check.date']);
-Route::view('/accept-agreement', 'accept_agreement')->name('accept_agreement')->middleware(['auth','check.date']);
+Route::view('/shiko-filmin', 'watch_movie')->name('movie')->middleware(['auth', 'has.paid']);
+Route::view('/accept-agreement', 'accept_agreement')->name('accept_agreement')->middleware(['auth', 'has.paid']);
 
 Route::group(['middleware' => ['auth','admin']], function () {
     //Dashboard

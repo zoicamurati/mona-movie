@@ -234,5 +234,5 @@ return [
 
     ],
 
-    'price' => env('PRICE', '19'),
+    'price' => env('PRICE', '9.91'),
 ];

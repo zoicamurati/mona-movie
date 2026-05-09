@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Mail\SendLinkMail;
+use App\Notifications\UserEmail;
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Mail;
@@ -42,7 +43,7 @@ class SendMovieLink extends Command
     {
         $users = \App\Models\User::where('role', 0)
             ->whereHas('invoices', function ($q) {
-                $q->where('status', '=', 1);
+                $q->where('status', 1);
             })
             ->orderBy('created_at', 'desc')->get();
 
@@ -50,7 +51,7 @@ class SendMovieLink extends Command
 
             //send email
             try {
-                Mail::to($user->email)->send(new SendLinkMail());
+                $user->notify(new UserEmail());
 
             } catch (\Exception $e) {
                 \Log::info($e->getMessage());
