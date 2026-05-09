@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}"/>
     <link rel="stylesheet" href="{{ asset('panel/css/typography.css') }}">
 
-    <title>Drilon Hoxha - Movie dashboard</title>
+    <title>Kino republika - Movie dashboard</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
 
@@ -85,13 +85,8 @@
 </body>
 
 
-
 <script src="{{ asset('/js/jwplayer.js') }}"></script>
 <script src="https://cdn.jwplayer.com/libraries/bTQA57Q3.js"></script>
-
-<script src="{{ asset('/js/jwplayer.js') }}"></script>
-<script src="https://cdn.jwplayer.com/libraries/bTQA57Q3.js"></script>
-
 <script type='text/javascript'>
 
     $(document).ready(function () {
@@ -105,7 +100,7 @@
         }
     };
     const playerInstance = jwplayer('player').setup({
-        "playlist": "https://cdn.jwplayer.com/v2/playlists/uZAXaACx?format=mrss"
+        "playlist": "https://cdn.jwplayer.com/v2/playlists/Ffpka8iQ?format=mrss"
     })
     jwplayer().setConfig({ allowFullscreen: false })
 
@@ -113,14 +108,6 @@
     var fs = document.getElementById('btnFS');
 
     fs.addEventListener('click', goFullScreen);
-
-    window.onload = function () {
-        video = document.querySelector('video');
-        if (video) {
-            video.setAttribute("controlsList", "nodownload");
-        }
-    };
-
 
 
 </script>
@@ -131,9 +118,6 @@
 </style>
 
 <script>
-
-    $('#myModal').modal({backdrop: 'static', keyboard: false})
-
     $('#myModal').modal({backdrop: 'static', keyboard: false})
 
 

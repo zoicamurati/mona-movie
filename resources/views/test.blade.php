@@ -9,11 +9,11 @@
     <!-- Favicons -->
 
     <link rel="shortcut icon" href="">
-    <link rel="shortcut icon" href="{{ asset('assets/images/drilon/favicon.png') }}">
-    <link rel="icon" type="image/png" href="{{ asset('assets/images/drilon/favicon.png') }}" sizes="32x32"/>
-    <link rel="icon" type="image/png" href="{{ asset('assets/images/drilon/favicon.png') }}" sizes="200x200"/>
+    <link rel="shortcut icon" href="{{ asset('assets/images/project/favicon.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/project/favicon.png') }}" sizes="32x32"/>
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/project/favicon.png') }}" sizes="200x200"/>
 
-    <title>Drilon Hoxha Production</title>
+    <title>ME FAT</title>
 
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:500,600,700&display=swap" rel="stylesheet">
@@ -60,7 +60,7 @@
         var URL = window.URL || window.webkitURL;
 
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'Filmi Shkembimi Final Per Titra-1.m4v', true);
+        xhr.open('GET', 'Filmi ME FAT Final Per Titra-1.m4v', true);
         xhr.responseType = 'blob'; //important
         xhr.onload = function(e) {
             if (this.status == 200) {

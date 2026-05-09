@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="utf-8"/>
-    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/images/drilon/favicon.png') }}">
-    <link rel="icon" type="image/png" href="{{ asset('assets/images/drilon/favicon.png') }}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/images/project/favicon.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/project/favicon.png') }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>
         Paneli i Menaxhimi
@@ -30,7 +30,7 @@
           Tip 2: you can also add an image using data-image tag
       -->
         <div class="logo"><a href="{{route('home')}}" class="simple-text logo-normal">
-                Shkembimi Film
+                ME FAT Film
             </a></div>
         <div class="sidebar-wrapper">
             <ul class="nav">

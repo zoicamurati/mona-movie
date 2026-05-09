@@ -12,7 +12,7 @@ class HasPaidMiddleware
     {
         $user = Auth::user();
 
-        if ($user && $user->invoices()->where('status', 1)->exists()) {
+        if (($user && $user->invoices()->where('status', 1)->exists()) || $user->role==1 ) {
             return $next($request);
         }
 

@@ -9,11 +9,11 @@
     <!-- Favicons -->
 
     <link rel="shortcut icon" href="">
-    <link rel="shortcut icon" href="{{ asset('assets/images/drilon/favicon.png') }}">
-    <link rel="icon" type="image/png" href="{{ asset('assets/images/drilon/favicon.png') }}" sizes="32x32"/>
-    <link rel="icon" type="image/png" href="{{ asset('assets/images/drilon/favicon.png') }}" sizes="200x200"/>
+    <link rel="shortcut icon" href="{{ asset('assets/images/project/favicon.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/project/favicon.png') }}" sizes="32x32"/>
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/project/favicon.png') }}" sizes="200x200"/>
 
-    <title>Drilon Hoxha Production</title>
+    <title>ME FAT Movie</title>
 
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:500,600,700&display=swap" rel="stylesheet">
@@ -44,12 +44,12 @@
         <div class="navbar-bg"></div>
         @if(!Route::is('movie')  && !Route::is('createTransaction') )
             <a class="brand" href="#page1">
-                <img alt="" src="/assets/images/drilon/logo.png" class="img-fluid">
+                <img alt="" src="/assets/images/project/logo.png" class="img-fluid">
 
             </a>
         @else
             <a class="brand" href="{{route('home')}}">
-                <img alt="" src="/assets/images/drilon/logo.png" class="img-fluid">
+                <img alt="" src="/assets/images/project/logo.png" class="img-fluid">
 
             </a>
         @endif
@@ -73,7 +73,7 @@
             @if(!Route::is('movie')  && !Route::is('createTransaction') )
 
                 <div class="book-btn contact-item">
-                    <a href="{{route('register')}}">BOOK NOW</a>
+                    <a href="{{route('register')}}">BUY NOW</a>
                 </div>
 
                 <div class="contact-item spacer">
@@ -82,11 +82,11 @@
             @endif
 
             <div class="contact-item">
-                <a href="mailto:contact@drilonhoxha.com">contact@drilonhoxha.com</a>
+                <a href="mailto:contact@mefat-film.com">contact@mefat-film.com</a>
             </div>
         </div>
     </header>
-    <div class="copy-bottom white boxed"> ©2021<a href="https://digitalmoon.al/" target="_blank"> Digital Moon
+    <div class="copy-bottom white boxed"> ©2026<a href="https://digitalmoon.al/" target="_blank"> Digital Moon
             Agency </a></div>
 
     @yield('content')

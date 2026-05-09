@@ -18,5 +18,5 @@ Shiko Filmin
 @endcomponent
 
 Kalofshi mire,<br>
-Drilon Hoxha
+
 @endcomponent

@@ -29,7 +29,7 @@ class SendLinkMail extends Mailable implements ShouldQueue
     public function build()
     {
         return $this->markdown('emails.sendLinkMail')
-            ->subject('Shiko filmin Shkembimi')
+            ->subject('Shiko filmin ME FAT')
             ->with([
                 'actionUrl' => config('app.url').'/shiko-filmin',
                 'actionText' => "Shiko filmin",

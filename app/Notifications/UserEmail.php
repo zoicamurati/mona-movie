@@ -44,7 +44,7 @@ class UserEmail extends Notification implements ShouldQueue
             ->markdown('emails.sendLinkMail')
             ->greeting('Pershendetje')
             ->from($address = 'noreply@domain.com')
-            ->subject('Shiko filmin Shkembimi')
+            ->subject('Shiko filmin ME FAT')
             ->action('Shiko filmin', config('app.url').'/shiko-filmin')
             ->salutation('Kalofsh mire!');
     }

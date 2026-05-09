@@ -2293,6 +2293,10 @@ pre code {
   .table-responsive-lg>.table-bordered {
     border: 0;
   }
+  .main-text{
+      width:90%
+  }
+
 }
 
 @media (max-width: 1199.98px) {

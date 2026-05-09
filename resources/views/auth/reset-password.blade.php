@@ -5,7 +5,7 @@
             <x-slot name="logo">
                 <div class="logo-login">
                     <a  href="/">
-                        <img alt="" src="/assets/images/drilon/logo.png" class="img-fluid">
+                        <img alt="" src="/assets/images/project/logo.png" class="img-fluid">
                     </a>
                 </div>
         </x-slot>

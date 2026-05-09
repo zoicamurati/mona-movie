@@ -55,7 +55,7 @@ class PaypalController extends Controller
                 'intent' => 'CAPTURE',
                 'purchase_units' => [[
                     'reference_id' => config('paypal.invoice_prefix') . '_' . $invoiceId,
-                    'description'  => 'Movie Drilon Hoxha',
+                    'description'  => 'Movie MEFAT',
                     'amount'       => [
                         'currency_code' => config('paypal.currency', 'EUR'),
                         'value'         => number_format($price, 2, '.', ''),
