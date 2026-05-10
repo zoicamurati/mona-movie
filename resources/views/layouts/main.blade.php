@@ -38,7 +38,7 @@
 
     <div class="click-capture"></div>
 
-<!-- Navbar -->
+    <!-- Navbar -->
 
     <header class="navbar navbar-fullpage boxed">
         <div class="navbar-bg"></div>
@@ -53,37 +53,44 @@
 
             </a>
         @endif
-
-        @if((Route::is('movie') || Route::is('accept_agreement') || Route::is('createTransaction')) && Auth::check() && Auth::user()->role == 1)
-            <div class="navbar-toggle book-btn contact-item">
-                <a href="{{route('panel')}}" class="text-white">Shko ne Panel</a>
-            </div>
-        @endif
-
-        @if((Route::is('movie') || Route::is('accept_agreement')) && Auth::check())
-            <form method="POST" action="{{ route('logout') }}" style="display:inline;">
-                @csrf
-                <button type="submit" class="navbar-toggle book-btn contact-item" style="background:none;border:none;cursor:pointer;">
-                    <span class="text-white">Dil</span>
-                </button>
-            </form>
-        @endif
-
         <div class="contacts d-none d-md-block">
-            @if(!Route::is('movie')  && !Route::is('createTransaction') )
+            @if((Route::is('movie') || Route::is('accept_agreement') || Route::is('createTransaction')) && Auth::check() && Auth::user()->role == 1)
+                <div class="navbar-toggle book-btn contact-item">
+                    <a href="{{route('panel')}}" class="text-white">Shko ne Panel</a>
+                </div>
+            @endif
+
+
+            @if((Route::is('movie') || Route::is('accept_agreement')) && Auth::check() && Auth::user()->role == 0)
+                <form method="POST" action="{{ route('logout') }}" style="display:inline;">
+                    @csrf
+                    <button type="submit" class="navbar-toggle book-btn contact-item"
+                            style="background:none;border:none;cursor:pointer;">
+                        <span class="text-white">Dil</span>
+                    </button>
+                </form>
+            @endif
+
+
+            @if(!Route::is('movie')  && !Route::is('createTransaction')  && !Route::is('accept_agreement'))
 
                 <div class="book-btn contact-item">
-                    <a href="{{route('register')}}">BUY NOW</a>
+                    @if(Auth::check() && Auth::user()->invoices()->where('status', 1)->exists())
+                        <a href="{{route('accept_agreement')}}">WATCH NOW</a>
+                    @else
+                        <a href="{{route('register')}}">BUY NOW</a>
+                    @endif
                 </div>
 
                 <div class="contact-item spacer">
                     /
                 </div>
             @endif
-
-            <div class="contact-item">
-                <a href="mailto:contact@mefat-film.com">contact@mefat-film.com</a>
-            </div>
+            @if(!Route::is('movie')  && !Route::is('createTransaction')  && !Route::is('accept_agreement'))
+                <div class="contact-item">
+                    <a href="mailto:contact@mefat-film.com">contact@mefat-film.com</a>
+                </div>
+            @endif
         </div>
     </header>
     <div class="copy-bottom white boxed"> ©2026<a href="https://digitalmoon.al/" target="_blank"> Digital Moon
@@ -100,35 +107,35 @@
     <script src="{{ asset('/assets/js/jquery.magnific-popup.min.js') }}"></script>
     <script src="{{ asset('/assets/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('/assets/js/jquery.pagepiling.min.js') }}"></script>
-  {{--  <script>
-        document.onkeydown = function(e) {
-            if (e.ctrlKey &&
-                (e.keyCode === 85 )) {
-                return false;
-            }
-        };
+    {{--  <script>
+          document.onkeydown = function(e) {
+              if (e.ctrlKey &&
+                  (e.keyCode === 85 )) {
+                  return false;
+              }
+          };
 
-        document.onkeydown = function(e) {
-            if(e.keyCode == 123) {
-                return false;
-            }
-            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
-                return false;
-            }
-            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
-                return false;
-            }
-            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
-                return false;
-            }
-            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
-                return false;
-            }
-        }
-        $(document).bind("contextmenu",function(e) {
-            e.preventDefault();
-        })
-    </script>--}}
+          document.onkeydown = function(e) {
+              if(e.keyCode == 123) {
+                  return false;
+              }
+              if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+                  return false;
+              }
+              if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+                  return false;
+              }
+              if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+                  return false;
+              }
+              if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+                  return false;
+              }
+          }
+          $(document).bind("contextmenu",function(e) {
+              e.preventDefault();
+          })
+      </script>--}}
 
     <script src="{{ asset('/assets/js/scripts.js') }}"></script>
 

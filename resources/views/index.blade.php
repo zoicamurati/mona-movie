@@ -36,7 +36,11 @@
                                  </div>
 
                                     <div class="book-btn contact-item" style="width: 200px; margin-top: 20px">
-                                        <a href="{{route('register')}}" style="color: #fff">BUY NOW</a>
+                                        @if(Auth::check() && Auth::user()->invoices()->where('status', 1)->exists())
+                                            <a href="{{route('accept_agreement')}}" style="color: #fff">WATCH NOW</a>
+                                        @else
+                                            <a href="{{route('register')}}" style="color: #fff">BUY NOW</a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

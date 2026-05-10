@@ -106,7 +106,7 @@ class PaypalController extends Controller
                 try {
                     $invoice = $this->saveUser('Completed', $token);
                 } catch (\Exception $e) {
-                    // Payment captured but user creation failed — log with PayPal order ID for manual recovery
+                    // Payment captured but user creation failed log with PayPal order ID for manual recovery
                     \Log::critical('PayPal payment captured but user creation failed', [
                         'paypal_order_id' => $token,
                         'payer_email'     => $payerEmail,
