@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}"/>
     <link rel="stylesheet" href="{{ asset('panel/css/typography.css') }}">
 
-    <title>Kino republika - Movie dashboard</title>
+    <title>Movie ME FAT</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
 
