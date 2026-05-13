@@ -1,12 +1,12 @@
 @extends('layouts.main')
 @section('content')
-    <div class="login-bg">
+    <div class="login-bg ">
     <x-auth-card>
         <x-slot name="logo">
             <div class="logo-login">
-                <a  href="/">
-                    <img alt="" src="/assets/images/project/logo.png" class="img-fluid">
-                </a>
+{{--                <a  href="/">--}}
+{{--                    <img alt="" src="/assets/images/project/logo.png" class="img-fluid">--}}
+{{--                </a>--}}
             </div>
         </x-slot>
 
