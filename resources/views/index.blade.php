@@ -3,14 +3,14 @@
 @section('content')
 
 
-    <div class="social-list social-list-bottom boxed">
-        <div class="social-icons">
-            <a target="_blank" href="https://www.youtube.com/c/DrilonHoxhaOfficial">   <div class="social-icon"><img alt="" class="img-fluid" src="/assets/images/project/ytwhite.png"></div></a>
-            <a target="_blank" href="https://www.facebook.com/Official.Drilon.Hoxha">   <div class="social-icon"><img alt=""  class="img-fluid"  src="/assets/images/project/fbwhite.png"></div></a>
-            <a target="_blank" href="https://www.instagram.com/drilonhoxha/">   <div class="social-icon"><img alt=""  class="img-fluid" src="/assets/images/project/igwhite.png"></div></a>
-        </div>
+{{--    <div class="social-list social-list-bottom boxed">--}}
+{{--        <div class="social-icons">--}}
+{{--            <a target="_blank" href="https://www.youtube.com/c/">   <div class="social-icon"><img alt="" class="img-fluid" src="/assets/images/project/ytwhite.png"></div></a>--}}
+{{--            <a target="_blank" href="https://www.facebook.com/">   <div class="social-icon"><img alt=""  class="img-fluid"  src="/assets/images/project/fbwhite.png"></div></a>--}}
+{{--            <a target="_blank" href="https://www.instagram.com/">   <div class="social-icon"><img alt=""  class="img-fluid" src="/assets/images/project/igwhite.png"></div></a>--}}
+{{--        </div>--}}
 
-    </div>
+{{--    </div>--}}
     <div class="pagepiling">
         <div data-anchor="page1" class="pp-scrollable text-white section section-1">
             <div class="scroll-wrap">

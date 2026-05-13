@@ -27,12 +27,6 @@
 </head>
 <body>
 <div class="animsition">
-    <div class="loader">
-        <div class="spinner">
-            <div class="double-bounce1"></div>
-            <div class="double-bounce2"></div>
-        </div>
-    </div>
 
     <!-- Content CLick Capture-->
 
@@ -43,7 +37,7 @@
     <header class="navbar navbar-fullpage boxed">
         <div class="navbar-bg"></div>
         @if(!Route::is('movie')  && !Route::is('createTransaction') )
-            <a class="brand" href="#page1">
+            <a class="brand" href="{{route('home')}}">
                 <img alt="" src="/assets/images/project/logo.png" class="img-fluid">
 
             </a>
