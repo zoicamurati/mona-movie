@@ -100,7 +100,7 @@
         }
     };
     const playerInstance = jwplayer('player').setup({
-        "playlist": "https://cdn.jwplayer.com/v2/playlists/Ffpka8iQ?format=mrss"
+        "playlist": "https://cdn.jwplayer.com/v2/playlists/2TNu2F7p?format=mrss"
     })
     jwplayer().setConfig({ allowFullscreen: false })
 
