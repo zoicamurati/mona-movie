@@ -1993,8 +1993,8 @@ a:hover{
   display: flex;
   justify-content: center;
   align-items: center;
-    border: none!important;
-
+  border: none !important;
+  outline: none !important;
 }
 
 .book-now a{
