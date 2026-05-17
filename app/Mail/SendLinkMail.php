@@ -11,31 +11,22 @@ class SendLinkMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public string $expiresAt;
+
+    public function __construct(string $expiresAt)
     {
-        //
+        $this->expiresAt = $expiresAt;
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
     public function build()
     {
         return $this->markdown('emails.sendLinkMail')
             ->subject('Shiko filmin ME FAT')
             ->with([
-                'actionUrl' => config('app.url').'/shiko-filmin',
-                'actionText' => "Shiko filmin",
-                'salutation' =>  "Shikim te kendeshem!",
+                'expiresAt'  => $this->expiresAt,
+                'actionUrl'  => config('app.url') . '/accept-agreement',
+                'actionText' => 'Shiko Filmin',
+                'salutation' => 'Shikim të këndshëm!',
             ]);
-
-
     }
 }

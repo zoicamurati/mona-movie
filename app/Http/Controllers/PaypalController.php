@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rules;
+use App\Mail\SendLinkMail;
+use Illuminate\Support\Facades\Mail;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class PaypalController extends Controller
@@ -117,7 +119,10 @@ class PaypalController extends Controller
                 }
 
                 if ($invoice->status) {
+                    $expiresAt = now()->addDays(3)->format('d/m/Y H:i');
+                    $userEmail = Session::get('request_email');
                     Session::forget(['request_name', 'request_email', 'request_password', 'user_name', 'user_email', 'total', 'invoice_id']);
+                    Mail::to($userEmail)->send(new SendLinkMail($expiresAt));
                     return redirect()->route('accept_agreement');
                 }
 
@@ -197,6 +202,9 @@ class PaypalController extends Controller
                 $invoice->save();
 
                 Session::forget(['total', 'invoice_id']);
+
+                $expiresAt = now()->addDays(3)->format('d/m/Y H:i');
+                Mail::to(Auth::user()->email)->send(new SendLinkMail($expiresAt));
 
                 return redirect()->route('accept_agreement');
             }
