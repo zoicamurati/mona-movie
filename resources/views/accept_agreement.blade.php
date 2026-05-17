@@ -21,6 +21,17 @@
 
             </div>
 
+            @php
+                $invoice = Auth::user()->invoices()->where('status', 1)->latest()->first();
+                $expiresAt = $invoice ? $invoice->created_at->addDays(3)->format('d/m/Y H:i') : null;
+            @endphp
+            @if($expiresAt)
+                <div style="background:#fff3cd;border:1px solid #ffc107;border-radius:6px;padding:12px 16px;margin:20px 0;color:#856404;">
+                    <strong>⚠ Kujdes:</strong> Filmin mund ta shikoni vetëm 3 ditë nga momenti i pagimit.
+                    Aksesi juaj skadon më: <strong>{{ $expiresAt }}</strong>.
+                </div>
+            @endif
+
             <input required type="checkbox" id="checkbox">
             <label>Pranoj kushtet e perdorimit</label>
 

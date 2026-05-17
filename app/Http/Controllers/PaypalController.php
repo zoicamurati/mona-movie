@@ -134,6 +134,81 @@ class PaypalController extends Controller
         return redirect()->route('register');
     }
 
+    public function processRebuy(Request $request)
+    {
+        $price = config('app.price');
+        Session::put('total', $price);
+
+        $invoiceId = uniqid();
+        Session::put('invoice_id', $invoiceId);
+
+        try {
+            $provider = $this->makeProvider();
+
+            $order = $provider->createOrder([
+                'intent' => 'CAPTURE',
+                'purchase_units' => [[
+                    'reference_id' => config('paypal.invoice_prefix') . '_' . $invoiceId,
+                    'description'  => 'Movie MEFAT',
+                    'amount'       => [
+                        'currency_code' => config('paypal.currency', 'EUR'),
+                        'value'         => number_format($price, 2, '.', ''),
+                    ],
+                ]],
+                'application_context' => [
+                    'return_url'          => url('/paypal/rebuy-success-transaction'),
+                    'cancel_url'          => url('/access-expired'),
+                    'shipping_preference' => 'NO_SHIPPING',
+                ],
+            ]);
+
+            if (isset($order['id'])) {
+                $approvalUrl = collect($order['links'])->firstWhere('rel', 'approve')['href'] ?? null;
+                if ($approvalUrl) {
+                    return redirect($approvalUrl);
+                }
+            }
+
+            \Log::error('PayPal rebuy createOrder failed', ['response' => $order]);
+        } catch (\Exception $e) {
+            \Log::error('PayPal processRebuy exception', ['error' => $e->getMessage()]);
+        }
+
+        return redirect()->route('access.expired');
+    }
+
+    public function successRebuy(Request $request)
+    {
+        $token = $request->get('token');
+
+        try {
+            $provider = $this->makeProvider();
+            $response = $provider->capturePaymentOrder($token);
+
+            \Log::info('PayPal rebuy capturePaymentOrder', ['response' => $response]);
+
+            if (isset($response['status']) && $response['status'] === 'COMPLETED') {
+                $invoice                  = new Invoice();
+                $invoice->user_id         = Auth::id();
+                $invoice->title           = 'Movie payment';
+                $invoice->total           = Session::get('total');
+                $invoice->status          = 1;
+                $invoice->paypal_order_id = $token;
+                $invoice->save();
+
+                Session::forget(['total', 'invoice_id']);
+
+                return redirect()->route('accept_agreement');
+            }
+
+            \Log::warning('PayPal rebuy capture not completed', ['response' => $response]);
+        } catch (\Exception $e) {
+            \Log::error('PayPal successRebuy exception', ['error' => $e->getMessage()]);
+        }
+
+        return redirect()->route('access.expired');
+    }
+
     protected function makeProvider(): PayPalClient
     {
         $provider = new PayPalClient;

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'index')->name('home');
+Route::view('/access-expired', 'access_expired')->name('access.expired');
 
 //Watch movie
 Route::view('/shiko-filmin', 'watch_movie')->name('movie')->middleware(['auth', 'has.paid']);
@@ -33,6 +34,10 @@ Route::group(['prefix' => 'paypal'], function () {
     Route::get('create-transaction', [\App\Http\Controllers\PaypalController::class, 'createTransaction'])->name('createTransaction');
     Route::post('process-transaction', [\App\Http\Controllers\PaypalController::class, 'processTransaction'])->name('processTransaction');
     Route::get('success-transaction', [\App\Http\Controllers\PaypalController::class, 'successTransaction'])->name('successTransaction');
+
+    // Rebuy flow — existing logged-in user renews access
+    Route::post('rebuy-process-transaction', [\App\Http\Controllers\PaypalController::class, 'processRebuy'])->name('rebuyProcess')->middleware('auth');
+    Route::get('rebuy-success-transaction', [\App\Http\Controllers\PaypalController::class, 'successRebuy'])->name('rebuySuccess')->middleware('auth');
 });
 
 Route::post('/contact', [\App\Http\Controllers\UserController::class, 'contact'])->name('contact');

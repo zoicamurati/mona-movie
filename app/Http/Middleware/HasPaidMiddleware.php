@@ -12,8 +12,21 @@ class HasPaidMiddleware
     {
         $user = Auth::user();
 
-        if (($user && $user->invoices()->where('status', 1)->exists()) || $user->role==1 ) {
+        if ($user->role == 1) {
             return $next($request);
+        }
+
+        $validInvoice = $user && $user->invoices()
+            ->where('status', 1)
+            ->where('created_at', '>=', now()->subDays(3))
+            ->exists();
+
+        if ($validInvoice) {
+            return $next($request);
+        }
+
+        if ($user && $user->invoices()->where('status', 1)->exists()) {
+            return redirect()->route('access.expired');
         }
 
         return redirect()->route('createTransaction');

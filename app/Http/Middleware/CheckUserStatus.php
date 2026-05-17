@@ -23,7 +23,8 @@ class CheckUserStatus
             $user1 = User::where('id', '=', auth()->user()->id)
                 ->where(function ($query) {
                     $query->whereHas('invoices', function ($q) {
-                        $q->where('status', '=', 1);
+                        $q->where('status', '=', 1)
+                          ->where('created_at', '>=', now()->subDays(3));
                     });
                     $query->orWhere('role', '=', 1);
                 })
@@ -35,7 +36,7 @@ class CheckUserStatus
 
                 $request->session()->regenerateToken();
 
-                return redirect()->route('login')->with('error', 'Your Account is suspended, please contact Admin.');
+                return redirect()->route('login')->with('error', 'Your 3-day access has expired. Please contact Admin.');
 
             } else {
                 return $next($request);
