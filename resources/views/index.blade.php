@@ -37,8 +37,13 @@
                                  </div>
 
                                     <div class="book-btn contact-item" style="width: 200px; margin-top: 20px">
-                                        @if(Auth::check() && Auth::user()->invoices()->where('status', 1)->exists())
+                                        @if(Auth::check() && Auth::user()->invoices()->where('status', 1)->where('created_at', '>=', now()->subDays(3))->exists())
                                             <a href="{{route('accept_agreement')}}" style="color: #fff">WATCH NOW</a>
+                                        @elseif(Auth::check() && Auth::user()->invoices()->where('status', 1)->exists())
+                                            <form method="POST" action="{{ route('rebuyProcess') }}" style="display:inline;">
+                                                @csrf
+                                                <button type="submit" style="background:none;border:none;outline:none;cursor:pointer;padding:0;color:#fff;font:inherit;letter-spacing:inherit;">BUY NOW</button>
+                                            </form>
                                         @else
                                             <a href="{{route('register')}}" style="color: #fff">BUY NOW</a>
                                         @endif

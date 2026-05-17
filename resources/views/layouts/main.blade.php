@@ -69,8 +69,13 @@
             @if(!Route::is('movie')  && !Route::is('createTransaction')  && !Route::is('accept_agreement'))
 
                 <div class="book-btn contact-item">
-                    @if(Auth::check() && Auth::user()->invoices()->where('status', 1)->exists())
+                    @if(Auth::check() && Auth::user()->invoices()->where('status', 1)->where('created_at', '>=', now()->subDays(3))->exists())
                         <a href="{{route('accept_agreement')}}">WATCH NOW</a>
+                    @elseif(Auth::check() && Auth::user()->invoices()->where('status', 1)->exists())
+                        <form method="POST" action="{{ route('rebuyProcess') }}" style="display:inline;">
+                            @csrf
+                            <button type="submit" style="background:none;border:none;outline:none;cursor:pointer;padding:0;color:inherit;font:inherit;letter-spacing:inherit;">BUY NOW</button>
+                        </form>
                     @else
                         <a href="{{route('register')}}">BUY NOW</a>
                     @endif
