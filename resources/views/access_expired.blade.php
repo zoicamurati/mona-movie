@@ -12,9 +12,16 @@
                 Mund ta blini përsëri aksesin për të shikuar filmin edhe 3 ditë të tjera.
             </p>
 
-            <form method="POST" action="{{ route('rebuyProcess') }}" style="display:flex;justify-content:center;">
+            <form method="POST" action="{{ route('rebuyProcess') }}" style="display:flex;flex-direction:column;align-items:center;">
                 @csrf
-                <div class="book-btn contact-item" style="width:200px;margin-top:20px;">
+
+                <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;text-align:left;">
+                    <input id="terms" type="checkbox" name="terms" required style="margin-top:3px;cursor:pointer;">
+                    <label for="terms" style="font-size:14px;cursor:pointer;color:#fff;">
+                        Unë pranoj <a href="{{ route('terms') }}" target="_blank" style="color:#fff;text-decoration:underline;">Kushtet dhe Termat e Shërbimit</a>
+                    </label>
+                </div>
+                <div class="book-btn contact-item" style="width:200px;margin-top:8px;">
                     <button type="submit" style="background:none;border:none;outline:none;cursor:pointer;width:100%;color:#fff;">
                         BLI PERSERI
                     </button>

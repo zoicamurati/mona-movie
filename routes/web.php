@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'index')->name('home');
 Route::view('/access-expired', 'access_expired')->name('access.expired');
+Route::view('/terms-and-conditions', 'terms')->name('terms');
 
 //Watch movie
 Route::view('/shiko-filmin', 'watch_movie')->name('movie')->middleware(['auth', 'has.paid']);

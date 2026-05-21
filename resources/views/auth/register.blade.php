@@ -61,6 +61,12 @@
 
 
 
+            <div class="mt-4" style="display:flex;align-items:flex-start;gap:10px;">
+                <input id="terms" type="checkbox" name="terms" required style="margin-top:3px;cursor:pointer;" {{ old('terms') ? 'checked' : '' }}>
+                <label for="terms" style="font-size:14px;cursor:pointer;">
+                    Unë pranoj <a href="{{ route('terms') }}" target="_blank" style="text-decoration:underline;">Kushtet dhe Termat e Shërbimit</a>
+                </label>
+            </div>
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
                     {{ __('Already registered?') }}
