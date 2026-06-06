@@ -128,21 +128,34 @@
     html, body {
         background: #000 !important;
         height: 100%;
-        margin: 0;
-        padding: 0;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
     }
     #container {
         background: #000;
         min-height: 100vh;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
     .video-block {
         background: #000;
-        width: 100%;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
     #player,
     #player .jwplayer,
     #player .jw-wrapper {
         width: 100% !important;
+        max-width: 100% !important;
+    }
+    .overlay h1 {
+        font-size: clamp(0.6rem, 3vw, 1.2rem) !important;
+        max-width: 95vw;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     .jw-icon .jw-icon-inline .jw-button-color .jw-reset .jw-icon-fullscreen {
         display: none !important;
