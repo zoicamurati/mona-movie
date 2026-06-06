@@ -902,7 +902,7 @@ Pricing Page
 }
 .overlay{
     position: fixed;
-    z-index: 99999;
+    z-index: 2147483647;
     bottom: 20%;
     left: 50%;
     transform: translateX(-50%);
@@ -910,8 +910,9 @@ Pricing Page
     white-space: nowrap;
 }
 .overlay.in-fullscreen {
-    position: absolute;
-    bottom: 20%;
+    position: absolute !important;
+    bottom: 20% !important;
+    z-index: 2147483647 !important;
 }
 .video-block .jwplayer.jw-flag-aspect-mode {
     height: 100vh !important;

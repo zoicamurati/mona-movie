@@ -104,29 +104,37 @@
     })
     jwplayer().setConfig({ allowFullscreen: false })
 
-    playerInstance.on('fullscreen', function(e) {
+    function moveOverlayIntoPlayer() {
         var overlay = document.querySelector('.overlay');
-        var videoBlock = document.querySelector('.video-block');
+        document.getElementById('player').appendChild(overlay);
+        overlay.classList.add('in-fullscreen');
+    }
+
+    function moveOverlayOutOfPlayer() {
+        var overlay = document.querySelector('.overlay');
+        document.querySelector('.video-block').appendChild(overlay);
+        overlay.classList.remove('in-fullscreen');
+    }
+
+    playerInstance.on('fullscreen', function(e) {
         if (e.fullscreen) {
-            document.getElementById('player').appendChild(overlay);
-            overlay.classList.add('in-fullscreen');
+            moveOverlayIntoPlayer();
         } else {
-            videoBlock.appendChild(overlay);
-            overlay.classList.remove('in-fullscreen');
+            moveOverlayOutOfPlayer();
         }
     });
 
-    document.addEventListener('fullscreenchange', function() {
-        var overlay = document.querySelector('.overlay');
-        var videoBlock = document.querySelector('.video-block');
-        if (document.fullscreenElement) {
-            document.fullscreenElement.appendChild(overlay);
-            overlay.classList.add('in-fullscreen');
+    function onFullscreenChange() {
+        var fsEl = document.fullscreenElement || document.webkitFullscreenElement;
+        if (fsEl) {
+            moveOverlayIntoPlayer();
         } else {
-            videoBlock.appendChild(overlay);
-            overlay.classList.remove('in-fullscreen');
+            moveOverlayOutOfPlayer();
         }
-    });
+    }
+
+    document.addEventListener('fullscreenchange', onFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', onFullscreenChange);
 
     var fs = document.getElementById('btnFS');
 
