@@ -38,16 +38,25 @@
                                      </h6>
                                  </div>
 
-                                    <div class="book-btn contact-item" style="width: 200px; margin-top: 20px">
+                                    <div style="display: flex; gap: 16px; margin-top: 20px; align-items: center; flex-wrap: wrap;">
                                         @if(Auth::check() && Auth::user()->invoices()->where('status', 1)->where('created_at', '>=', now()->subDays(3))->exists())
-                                            <a href="{{route('accept_agreement')}}" style="color: #fff">WATCH NOW</a>
+                                            <div class="book-btn contact-item" style="width: 200px;">
+                                                <a href="{{route('accept_agreement')}}" style="color: #fff">WATCH NOW</a>
+                                            </div>
                                         @elseif(Auth::check() && Auth::user()->invoices()->where('status', 1)->exists())
-                                            <form method="POST" action="{{ route('rebuyProcess') }}" style="display:inline;">
-                                                @csrf
-                                                <button type="submit" style="background:none;border:none;outline:none;cursor:pointer;padding:0;color:#fff;font:inherit;letter-spacing:inherit;">BUY NOW</button>
-                                            </form>
+                                            <div class="book-btn contact-item" style="width: 200px;">
+                                                <form method="POST" action="{{ route('rebuyProcess') }}" style="display:inline;">
+                                                    @csrf
+                                                    <button type="submit" style="background:none;border:none;outline:none;cursor:pointer;padding:0;color:#fff;font:inherit;letter-spacing:inherit;">BUY NOW</button>
+                                                </form>
+                                            </div>
                                         @else
-                                            <a href="{{route('register')}}" style="color: #fff">BUY NOW</a>
+                                            <div class="book-btn contact-item" style="width: 200px;">
+                                                <a href="{{route('register')}}" style="color: #fff">BUY NOW</a>
+                                            </div>
+                                            <div class="book-btn contact-item" style="width: 200px;">
+                                                <a href="{{route('login')}}" style="color: #fff">LOGIN</a>
+                                            </div>
                                         @endif
                                     </div>
                                 </div>
