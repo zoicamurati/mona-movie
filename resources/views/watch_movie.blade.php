@@ -104,6 +104,29 @@
     })
     jwplayer().setConfig({ allowFullscreen: false })
 
+    playerInstance.on('fullscreen', function(e) {
+        var overlay = document.querySelector('.overlay');
+        var videoBlock = document.querySelector('.video-block');
+        if (e.fullscreen) {
+            document.getElementById('player').appendChild(overlay);
+            overlay.classList.add('in-fullscreen');
+        } else {
+            videoBlock.appendChild(overlay);
+            overlay.classList.remove('in-fullscreen');
+        }
+    });
+
+    document.addEventListener('fullscreenchange', function() {
+        var overlay = document.querySelector('.overlay');
+        var videoBlock = document.querySelector('.video-block');
+        if (document.fullscreenElement) {
+            document.fullscreenElement.appendChild(overlay);
+            overlay.classList.add('in-fullscreen');
+        } else {
+            videoBlock.appendChild(overlay);
+            overlay.classList.remove('in-fullscreen');
+        }
+    });
 
     var fs = document.getElementById('btnFS');
 
