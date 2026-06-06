@@ -123,6 +123,19 @@
 
 </script>
 <style>
+    html, body {
+        background: #000 !important;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    #container {
+        background: #000;
+        min-height: 100vh;
+    }
+    .video-block {
+        background: #000;
+    }
     .jw-icon .jw-icon-inline .jw-button-color .jw-reset .jw-icon-fullscreen {
         display: none !important;
     }
