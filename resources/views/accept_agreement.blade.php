@@ -37,9 +37,8 @@
 
         </div>
     </div>
-
-    <script>
-        $("#checkbox").click(function () {
+<script>
+        document.getElementById("checkbox").addEventListener("click", function () {
             window.location.href = '/shiko-filmin';
         });
     </script>

@@ -25,6 +25,8 @@
                                 <div class="col-md-12 col-lg-12">
 {{--                                    <h1 class="display-2 text-white  wow fadeIn" style="font-size: 5.54rem;" data-wow-delay="0.1s">Perfitojeni vetem per <s> 10€ </s><span class="text-primary" style="font-size: 7rem; "> 10€</span></h1>--}}
                                     <h1 class="display-2 text-white  wow fadeIn" style="font-size: 5.54rem;" data-wow-delay="0.1s">Perfitojeni vetem per <span class="text-primary" style="font-size: 7rem; "> 10€</span></h1>
+                              
+                                       <h5 class=" text-white  wow fadeIn" data-wow-delay="0.1s">Filmi do të jetë i disponueshëm <span class="text-primary" style="text-transform: uppercase;" >Vetëm për 3 ditë </span> nga momenti i blerjes </h5>
                                  <div class="main-text">
 {{--                                     <h6 class=" text-white  wow fadeIn" style="font-size: 16px;" >--}}
 {{--                                         Mefo ëndërron të bëhet kampion boksi, por rruga drejt ringut e çon larg familjes dhe e përfshin në një realitet të ashpër, ku rreziku dhe e kaluara e tij e errët e ndjekin në çdo hap. Teksa përpiqet të shkëputet nga hija e gabimeve dhe të përqendrohet vetëm te ëndrra e tij, ai përballet me një zgjedhje që do t’i ndryshojë jetën: lavdia në ring apo dashuria për Inën. Në një botë ku çdo goditje ka pasoja, Mefo duhet të vendosë çfarë është gati të humbasë për të fituar gjithçka.</h6>--}}
