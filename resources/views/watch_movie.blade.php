@@ -100,15 +100,20 @@
         }
     };
     const playerInstance = jwplayer('player').setup({
-        "playlist": "https://cdn.jwplayer.com/v2/playlists/2TNu2F7p?format=mrss"
+        "playlist": "https://cdn.jwplayer.com/v2/playlists/2TNu2F7p?format=mrss",
+        "allowFullscreen": false
     })
-    jwplayer().setConfig({ allowFullscreen: false })
 
-    playerInstance.on('fullscreen', function(e) {
-        if (e.fullscreen) {
-            playerInstance.setFullscreen(false);
+    // Block double-tap fullscreen on mobile
+    var lastTap = 0;
+    document.getElementById('player').addEventListener('touchend', function(e) {
+        var now = Date.now();
+        if (now - lastTap < 400) {
+            e.preventDefault();
+            e.stopPropagation();
         }
-    });
+        lastTap = now;
+    }, { capture: true, passive: false });
 
 
     var fs = document.getElementById('btnFS');
