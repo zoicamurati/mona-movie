@@ -909,11 +909,6 @@ Pricing Page
     pointer-events: none;
     white-space: nowrap;
 }
-.overlay.in-fullscreen {
-    position: absolute !important;
-    bottom: 20% !important;
-    z-index: 2147483647 !important;
-}
 .video-block .jwplayer.jw-flag-aspect-mode {
     height: 100vh !important;
 }

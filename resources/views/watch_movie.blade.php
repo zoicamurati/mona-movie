@@ -104,37 +104,12 @@
     })
     jwplayer().setConfig({ allowFullscreen: false })
 
-    function moveOverlayIntoPlayer() {
-        var overlay = document.querySelector('.overlay');
-        document.getElementById('player').appendChild(overlay);
-        overlay.classList.add('in-fullscreen');
-    }
-
-    function moveOverlayOutOfPlayer() {
-        var overlay = document.querySelector('.overlay');
-        document.querySelector('.video-block').appendChild(overlay);
-        overlay.classList.remove('in-fullscreen');
-    }
-
     playerInstance.on('fullscreen', function(e) {
         if (e.fullscreen) {
-            moveOverlayIntoPlayer();
-        } else {
-            moveOverlayOutOfPlayer();
+            playerInstance.setFullscreen(false);
         }
     });
 
-    function onFullscreenChange() {
-        var fsEl = document.fullscreenElement || document.webkitFullscreenElement;
-        if (fsEl) {
-            moveOverlayIntoPlayer();
-        } else {
-            moveOverlayOutOfPlayer();
-        }
-    }
-
-    document.addEventListener('fullscreenchange', onFullscreenChange);
-    document.addEventListener('webkitfullscreenchange', onFullscreenChange);
 
     var fs = document.getElementById('btnFS');
 
