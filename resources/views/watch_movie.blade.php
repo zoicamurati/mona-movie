@@ -101,7 +101,9 @@
     };
     const playerInstance = jwplayer('player').setup({
         "playlist": "https://cdn.jwplayer.com/v2/playlists/2TNu2F7p?format=mrss",
-        "allowFullscreen": false
+        "allowFullscreen": false,
+        "stretching": "uniform",
+        "width": "100%"
     })
 
     // Block double-tap fullscreen on mobile
@@ -135,6 +137,12 @@
     }
     .video-block {
         background: #000;
+        width: 100%;
+    }
+    #player,
+    #player .jwplayer,
+    #player .jw-wrapper {
+        width: 100% !important;
     }
     .jw-icon .jw-icon-inline .jw-button-color .jw-reset .jw-icon-fullscreen {
         display: none !important;
